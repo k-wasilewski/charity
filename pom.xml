@@ -14,6 +14,8 @@
     <name>charity</name>
     <description>Charity project, created with love in CodersLab</description>
 
+    <packaging>war</packaging>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
