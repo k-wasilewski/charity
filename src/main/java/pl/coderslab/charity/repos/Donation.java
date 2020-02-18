@@ -1,4 +1,4 @@
-package pl.coderslab.charity.repos.entities;
+package pl.coderslab.charity.repos;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -17,7 +17,6 @@ public class Donation {
     @ManyToMany
     private List<Category> categories;
     @ManyToOne
-    @NotNull
     private Institution institution;
     @NotBlank
     private String street;
@@ -27,7 +26,6 @@ public class Donation {
     private String zipCode;
     @Future
     private LocalDate pickUpDate;
-    @NotNull
     private LocalTime pickUpTime;
     private String pickUpComment;
 
