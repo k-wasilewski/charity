@@ -619,6 +619,11 @@ form .form-group--checkbox .checkbox {
   -o-transition: background 0.2s ease-in-out;
   transition: background 0.2s ease-in-out;
   cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.springcheckbox {
+  margin-right: 30px;
 }
 
 /* line 78, scss/modules/_forms.scss */

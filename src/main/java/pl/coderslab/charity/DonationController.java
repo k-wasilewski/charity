@@ -31,7 +31,7 @@ public class DonationController {
 
     @PostMapping("/donation")
     public String donationAction(@ModelAttribute("donation") Donation donation, Model model){
-
-        return "donationForm";
+        System.out.println("received: "+donation);
+        return "redirect:/";
     }
 }

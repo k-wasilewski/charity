@@ -1,6 +1,19 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   /**
+   * styling of Spring Form checkboxes
+   */
+  $('.springcheckbox').unbind('click').bind('click', function() {
+    if ($(this).hasClass('active')) {
+      $(this).css('background-color', 'white');
+      $(this).removeClass('active');
+    } else {
+      $(this).addClass('active');
+      $(this).css('background-color', '#f9c910');
+    }
+  });
+
+  /**
    * Form Select
    */
   class FormSelect {
@@ -140,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
 
       // Form submit
-      this.$form.querySelector("form").addEventListener("submit", e => this.submit(e));
+      this.$form.querySelector("form").addEventListener("Asubmit", e => this.submit(e));
     }
 
     /**
