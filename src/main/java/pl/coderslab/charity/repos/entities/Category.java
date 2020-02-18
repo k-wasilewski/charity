@@ -1,17 +1,16 @@
-package entities;
+package pl.coderslab.charity.repos.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name="institutions")
-public class Institution {
+@Table(name="categories")
+public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
     @NotBlank
     private String name;
-    private String description;
 
     public Integer getId() {
         return id;
@@ -27,13 +26,5 @@ public class Institution {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

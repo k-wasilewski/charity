@@ -1,4 +1,4 @@
-package entities;
+package pl.coderslab.charity.repos.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

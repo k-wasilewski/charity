@@ -84,29 +84,29 @@
             Możesz sprawdzić czym się zajmują.</p>
 
         <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-                </div>
+            <c:forEach items="${institutions}" var="inst" varStatus="status">
+                <jsp:useBean id="status" type="javax.servlet.jsp.jstl.core.LoopTagStatus" />
 
-                <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-                </div>
-            </li>
 
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
+                    <c:if test="<%=status.getCount()%2==0%>">
+                        <div class="col">
+                            ${status.count}
+                            <div class="title">${inst.name}</div>
+                            <div class="subtitle">${inst.description}</div>
+                        </div>
+                        </li>
+                    </c:if>
 
-            </li>
+                    <c:if test="<%=status.getCount()%2!=0%>">
+                <li>
+                    <div class="col">
+                            ${status.count}
+                        <div class="title">${inst.name}</div>
+                        <div class="subtitle">${inst.description}</div>
+                    </div>
+                        <c:if test="<%=status.isLast()%>"></li></c:if>
+                </c:if>
+            </c:forEach>
 
         </ul>
     </div>
