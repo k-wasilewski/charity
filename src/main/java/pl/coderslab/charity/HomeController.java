@@ -18,6 +18,7 @@ private DonationRepository donationRepository;
     public String homeAction(Model model){
         model.addAttribute("institutions", institutionRepository.findAll());
         model.addAttribute("donationsQuantities", donationRepository.customQuantitiesSum());
+        model.addAttribute("donationsSum", donationRepository.findAll().size());
         return "index";
     }
 }
