@@ -7,3 +7,7 @@ INSERT INTO institutions(name, description) VALUES("Fundacja ""Bez domu""", "Cel
 INSERT INTO donations(quantity) VALUES(5);
 INSERT INTO donations(quantity) VALUES(13);
 INSERT INTO donations(quantity) VALUES(6);
+
+INSERT INTO categories(name) VALUES("zabawki");
+INSERT INTO categories(name) VALUES("ubrania");
+INSERT INTO categories(name) VALUES("jedzenie");
