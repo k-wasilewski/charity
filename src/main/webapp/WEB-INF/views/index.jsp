@@ -90,7 +90,6 @@
 
                     <c:if test="<%=status.getCount()%2==0%>">
                         <div class="col">
-                            ${status.count}
                             <div class="title">${inst.name}</div>
                             <div class="subtitle">${inst.description}</div>
                         </div>
@@ -100,7 +99,6 @@
                     <c:if test="<%=status.getCount()%2!=0%>">
                 <li>
                     <div class="col">
-                            ${status.count}
                         <div class="title">${inst.name}</div>
                         <div class="subtitle">${inst.description}</div>
                     </div>
