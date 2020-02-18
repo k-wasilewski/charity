@@ -111,4 +111,8 @@ public class Donation {
     public void setPickUpComment(String pickUpComment) {
         this.pickUpComment = pickUpComment;
     }
+
+    public String toString() {
+        return ""+id+quantity+categories+institution+street+city+zipCode+pickUpDate+pickUpTime+pickUpComment;
+    }
 }

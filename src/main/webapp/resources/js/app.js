@@ -14,6 +14,55 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   /**
+   * styling of Spring Form 'quantity' input
+   */
+  $(".quantity").attr({
+    "type" : "number",
+  });
+
+  /**
+   * donation summary
+   */
+
+  $('.things').change(function(){
+    var things = $(this).attr('class').replace('things ','');
+    $('#summaryThings').text(things);
+  });
+
+  $('.quantity').change(function(){
+    $('#summaryQuantity').text($(this).val());
+  });
+
+  $('.institution').change(function(){
+    var inst = $(this).attr('class').replace('institution ','');
+    $('#summaryInstitution').text(inst);
+  });
+
+  $('.street').change(function(){
+    $('#summaryStreet').text($(this).val());
+  });
+
+  $('.city').change(function(){
+    $('#summaryCity').text($(this).val());
+  });
+
+  $('.zipcode').change(function(){
+    $('#summaryZipcode').text($(this).val());
+  });
+
+  $('.pickupdate').change(function(){
+    $('#summaryPickupdate').text($(this).val());
+  });
+
+  $('.pickuptime').keypress(function(){
+    $('#summaryPickuptime').text($(this).val());
+  });
+
+  $('.pickupcomment').change(function(){
+    $('#summaryPickupcomment').text($(this).val());
+  });
+
+  /**
    * Form Select
    */
   class FormSelect {
