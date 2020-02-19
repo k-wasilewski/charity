@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.auth.UserRepository;
+import pl.coderslab.charity.auth.UserService;
+
+import java.util.Random;
 
 @Controller
 public class ForgottenPasswordController {
@@ -15,6 +18,8 @@ public class ForgottenPasswordController {
     EmailServiceImpl emailService;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/forgotten")
     public String forgotten() {
@@ -28,7 +33,24 @@ public class ForgottenPasswordController {
             model.addAttribute("msg", true);
             return "forgotten-confirmation";
         }
-        emailService.sendSimpleMessage(email, "Forgotten password", userRepository.getPassword(email));
+        String newPassword = generateRandomSpecialCharacters(8);
+        userService.changePwd(userRepository.findByUsername(email), newPassword);
+        emailService.sendSimpleMessage(email, "Forgotten password", newPassword);
         return "forgotten-confirmation";
+    }
+
+    public String generateRandomSpecialCharacters(int length) {
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return generatedString;
     }
 }

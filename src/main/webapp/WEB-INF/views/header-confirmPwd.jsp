@@ -39,7 +39,7 @@
                     <p style="color: red"> Nie ma takiego użytkownika w bazie. </p>
                 </c:when>
                 <c:otherwise>
-                    Na podanego maila wysłaliśmy Twoje hasło.
+                    Na podanego maila wysłaliśmy Twoje nowe hasło.
                 </c:otherwise>
             </c:choose>
         </h2>
