@@ -33,7 +33,7 @@ public class SecSecurityConfig
                 .defaultSuccessUrl("/", true)
                 .and()
                 .logout()
-                .logoutSuccessUrl("/afterlogout")
+                .logoutSuccessUrl("/")
                 .and()
                 .httpBasic()
                 .and()

@@ -64,25 +64,25 @@ document.addEventListener("DOMContentLoaded", function() {
   */
 
   $('.summaryBtn').click(function () {
-    var things = $(this).attr('class').replace('things ','');
+    var things = $('.things').attr('class').replace('things ','');
     $('#summaryThings').text(things);
 
-    $('#summaryQuantity').text($(this).val());
+    $('#summaryQuantity').text($('.quantity').val());
 
-    var inst = $(this).attr('class').replace('institution ','');
+    var inst = $('.institution').attr('class').replace('institution ','');
     $('#summaryInstitution').text(inst);
 
-    $('#summaryStreet').text($(this).val());
+    $('#summaryStreet').text($('.street').val());
 
-    $('#summaryCity').text($(this).val());
+    $('#summaryCity').text($('.city').val());
 
-    $('#summaryZipcode').text($(this).val());
+    $('#summaryZipcode').text($('.zipcode').val());
 
-    $('#summaryPickupdate').text($(this).val());
+    $('#summaryPickupdate').text($('.pickupdate').val());
 
-    $('#summaryPickuptime').text($(this).val());
+    $('#summaryPickuptime').text($('.pickuptime').val());
 
-    $('#summaryPickupcomment').text($(this).val());
+    $('#summaryPickupcomment').text($('.pickupcomment').val());
   });
 
   /**
