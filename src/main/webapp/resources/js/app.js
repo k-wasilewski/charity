@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
   /**
    * donation summary
    */
-
+  /*
   $('.things').change(function(){
     var things = $(this).attr('class').replace('things ','');
     $('#summaryThings').text(things);
@@ -59,6 +59,29 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   $('.pickupcomment').change(function(){
+    $('#summaryPickupcomment').text($(this).val());
+  });
+  */
+
+  $('.summaryBtn').click(function () {
+    var things = $(this).attr('class').replace('things ','');
+    $('#summaryThings').text(things);
+
+    $('#summaryQuantity').text($(this).val());
+
+    var inst = $(this).attr('class').replace('institution ','');
+    $('#summaryInstitution').text(inst);
+
+    $('#summaryStreet').text($(this).val());
+
+    $('#summaryCity').text($(this).val());
+
+    $('#summaryZipcode').text($(this).val());
+
+    $('#summaryPickupdate').text($(this).val());
+
+    $('#summaryPickuptime').text($(this).val());
+
     $('#summaryPickupcomment').text($(this).val());
   });
 

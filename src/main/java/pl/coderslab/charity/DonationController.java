@@ -17,6 +17,7 @@ import pl.coderslab.charity.repos.InstitutionRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class DonationController {
@@ -28,7 +29,7 @@ public class DonationController {
     private InstitutionRepository institutionRepository;
 
     @GetMapping("/auth/donation")
-    public String donationForm(Model model, HttpServletRequest req){
+    public String donationForm(Model model, HttpServletRequest req, Principal principal){
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("institutions", institutionRepository.findAll());
         model.addAttribute("donation", new Donation());
@@ -37,12 +38,18 @@ public class DonationController {
         UserAgent ua = UserAgent.parseUserAgentString(userAgent);
         model.addAttribute("browser", ua.getBrowser().toString());
 
+        if (principal!=null) {
+            model.addAttribute("username", principal.getName());
+        } else {
+            model.addAttribute("username", null);
+        }
+
         return "donationForm";
     }
 
     @PostMapping("/auth/donation")
     public String donationAction(@ModelAttribute("donation") @Valid Donation donation, BindingResult result,
-                                 Model model, HttpServletRequest req) {
+                                 Model model, HttpServletRequest req, Principal principal) {
         if (result.hasErrors()) {
             model.addAttribute("categories", categoryRepository.findAll());
             model.addAttribute("institutions", institutionRepository.findAll());
@@ -53,9 +60,26 @@ public class DonationController {
             UserAgent ua = UserAgent.parseUserAgentString(userAgent);
             model.addAttribute("browser", ua.getBrowser().toString());
 
+            if (principal!=null) {
+                model.addAttribute("username", principal.getName());
+            } else {
+                model.addAttribute("username", null);
+            }
+
             return "donationForm";
         }
         donationRepository.save(donation);
+        return "redirect:/auth/confirm";
+    }
+
+    @RequestMapping("/auth/confirm")
+    public String confirm(Model model, Principal principal) {
+        if (principal!=null) {
+            model.addAttribute("username", principal.getName());
+        } else {
+            model.addAttribute("username", null);
+        }
+
         return "form-confirmation";
     }
 }
