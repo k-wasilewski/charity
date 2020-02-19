@@ -28,15 +28,6 @@
             <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
-
-    <div class="slogan container container--90">
-        <div class="slogan--item">
-            <h1>
-                Zacznij pomagać!<br/>
-                Oddaj niechciane rzeczy w zaufane ręce
-            </h1>
-        </div>
-    </div>
 </header>
 <script src="<c:url value="resources/js/app.js"/>"></script>
 </body>
