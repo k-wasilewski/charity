@@ -28,7 +28,7 @@ public class SecSecurityConfig
                 .antMatchers("/auth/**").hasAnyRole("USER")
                 .anyRequest().permitAll()
                 .and()
-                .formLogin().loginPage("/")
+                .formLogin().loginPage("/login")
                 .usernameParameter("username").passwordParameter("password")
                 .defaultSuccessUrl("/auth", true)
                 .and()
