@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="header-auth.jsp"/>
 
 <section class="form--steps">
     <div class="form--steps-instructions">

@@ -27,7 +27,7 @@ public class DonationController {
     @Autowired
     private InstitutionRepository institutionRepository;
 
-    @GetMapping("/donation")
+    @GetMapping("/auth/donation")
     public String donationForm(Model model, HttpServletRequest req){
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("institutions", institutionRepository.findAll());
@@ -40,7 +40,7 @@ public class DonationController {
         return "donationForm";
     }
 
-    @PostMapping("/donation")
+    @PostMapping("/auth/donation")
     public String donationAction(@ModelAttribute("donation") @Valid Donation donation, BindingResult result,
                                  Model model, HttpServletRequest req) {
         if (result.hasErrors()) {
@@ -56,6 +56,6 @@ public class DonationController {
             return "donationForm";
         }
         donationRepository.save(donation);
-        return "redirect:/";
+        return "form-confirmation";
     }
 }

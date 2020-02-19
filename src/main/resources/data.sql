@@ -11,3 +11,6 @@ INSERT INTO donations(quantity, institution_id, pick_up_time, pick_up_date) VALU
 INSERT INTO categories(name) VALUES("zabawki");
 INSERT INTO categories(name) VALUES("ubrania");
 INSERT INTO categories(name) VALUES("jedzenie");
+
+INSERT INTO role(name) VALUES("ROLE_USER");
+INSERT INTO role(name) VALUES("ROLE_ADMIN");

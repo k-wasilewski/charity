@@ -30,7 +30,7 @@ public class SecSecurityConfig
                 .and()
                 .formLogin().loginPage("/login")
                 .usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/auth", true)
+                .defaultSuccessUrl("/", true)
                 .and()
                 .logout()
                 .logoutSuccessUrl("/afterlogout")

@@ -13,7 +13,14 @@
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<c:choose>
+    <c:when test="${username==null}">
+        <jsp:include page="header.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="header-auth.jsp"/>
+    </c:otherwise>
+</c:choose>
 
 <section class="stats">
     <div class="container container--85">
