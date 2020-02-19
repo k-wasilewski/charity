@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -129,7 +130,17 @@
                          </div>
 
                          <div class="form-group form-group--inline">
-                            <label> Godzina <form:input cssClass="pickuptime" type="time" path="pickUpTime" /> </label>
+                            <label>
+                                Godzina
+                                <c:choose>
+                                    <c:when test="${fn:contains(browser, 'FIREFOX')}">
+                                        (hh:mm) <form:input cssClass="pickuptime" path="pickUpTime" />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <form:input cssClass="pickuptime" type="time" path="pickUpTime" />
+                                    </c:otherwise>
+                                </c:choose>
+                            </label>
                          </div>
 
                          <div class="form-group form-group--inline">

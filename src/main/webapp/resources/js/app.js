@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
     $('#summaryPickupdate').text($(this).val());
   });
 
-  $('.pickuptime').keypress(function(){
+  $('.pickuptime').change(function(){
     $('#summaryPickuptime').text($(this).val());
   });
 
