@@ -32,6 +32,9 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
+                <c:if test="${msg==true}">
+                    <p style="color: red">Hasła muszą się zgadzać</p>
+                </c:if>
                 Zacznij pomagać!<br/>
                 Oddaj niechciane rzeczy w zaufane ręce
             </h1>

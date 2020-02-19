@@ -43,4 +43,9 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(newPwd));
         userRepository.save(user);
     }
+
+    @Override
+    public boolean confirmPwd(String username, String password) {
+        return passwordEncoder.matches(password, userRepository.getPassword(username));
+    }
 }

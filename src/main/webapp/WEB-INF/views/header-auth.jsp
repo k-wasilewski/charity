@@ -19,7 +19,7 @@
             <li class="logged-user">
                 Witaj ${username}
                 <ul class="dropdown">
-                    <li><a href="#">Profil</a></li>
+                    <li><a href="/changePwd">Zmień hasło</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
@@ -40,6 +40,16 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
+                <c:if test="${msg2==true}">
+                    <p style="color: red">Hasło błędne</p>
+                </c:if>
+                <c:if test="${msg3==true}">
+                    <p style="color: red">Nie udało się zmienić hasła</p>
+                </c:if>
+                <c:if test="${msg4==true}">
+                    <p style="font-weight: bold"> Hasło zmienione</p>
+                </c:if>
+                <br>
                 Zacznij pomagać!<br/>
                 Oddaj niechciane rzeczy w zaufane ręce
             </h1>
