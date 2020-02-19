@@ -41,6 +41,12 @@
         <form:form modelAttribute="donation" method="post">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
+                <c:if test="${msg==true}">
+                    <div class="form-group--checkbox" style="color: red; font-family: 'Merriweather', serif;
+                    font-weight: 300; font-style: normal; font-size: 2rem; margin-bottom: 10px;">
+                        Formularz zawiera błędy i nie został wysłany, popraw go
+                    </div>
+                </c:if>
                 <h3>Zaznacz co chcesz oddać:</h3>
                 <div class="form-group form-group--checkbox">
                     <c:forEach items="${categories}" var="cat">
@@ -50,6 +56,7 @@
                                           cssClass="things ${cat.name}" value="${cat}"/>
                         </label>
                     </c:forEach>
+                    <form:errors path="categories" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
                 </div>
 
                 <div class="form-group form-group--buttons">
@@ -66,6 +73,7 @@
                         Liczba 60l worków:
                         <form:input cssClass="quantity" path="quantity"/>
                     </label>
+                    <form:errors path="quantity" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
                 </div>
 
                 <div class="form-group form-group--buttons">
@@ -94,6 +102,7 @@
                         </label>
                     </div>
                 </c:forEach>
+                <form:errors path="institution" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
@@ -110,16 +119,19 @@
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
                             <label> Ulica <form:input cssClass="street" path="street" /> </label>
+                            <form:errors path="street" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label> Miasto <form:input cssClass="city" path="city"/> </label>
+                            <form:errors path="city" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Kod pocztowy <form:input cssClass="zipcode" path="zipCode" />
                             </label>
+                            <form:errors path="zipCode" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
                         </div>
                     </div>
 
@@ -127,6 +139,7 @@
                          <h4>Termin odbioru</h4>
                          <div class="form-group form-group--inline">
                             <label> Data <form:input cssClass="pickupdate" type="date" path="pickUpDate"/> </label>
+                             <form:errors path="pickUpDate" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
                          </div>
 
                          <div class="form-group form-group--inline">
@@ -141,6 +154,7 @@
                                     </c:otherwise>
                                 </c:choose>
                             </label>
+                             <form:errors path="pickUpTime" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
                          </div>
 
                          <div class="form-group form-group--inline">
@@ -148,6 +162,7 @@
                                 Uwagi dla kuriera
                                 <form:textarea cssClass="pickupcomment" path="pickUpComment" rows="5"/>
                             </label>
+                             <form:errors path="pickUpComment" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
                         </div>
                     </div>
                 </div>

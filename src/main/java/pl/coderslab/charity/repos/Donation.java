@@ -14,21 +14,26 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
-    @Size(min = 1)
+    @NotNull(message = "Podaj dodatnią ilość")
     private Integer quantity;
     @ManyToMany
+    @NotEmpty(message = "Wybierz co chcesz oddać")
     private List<Category> categories;
     @ManyToOne
+    @NotNull(message = "Wybierz instytucję")
     private Institution institution;
-    @NotBlank
+    @NotBlank(message = "Podaj ulicę")
     private String street;
-    @NotBlank
+    @NotBlank(message = "Podaj miasto")
     private String city;
-    @NotBlank
+    @NotBlank(message = "Podaj kod pocztowy")
     private String zipCode;
-    @Future
+    @NotNull(message = "Podaj datę z przyszłości")
+    @Future(message = "Podaj datę z przyszłości")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
+    @DateTimeFormat(pattern = "H:mm")
+    @NotNull(message = "Podaj godzinę")
     private LocalTime pickUpTime;
     private String pickUpComment;
 
