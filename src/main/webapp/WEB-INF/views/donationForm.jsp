@@ -145,14 +145,7 @@
                          <div class="form-group form-group--inline">
                             <label>
                                 Godzina
-                                <c:choose>
-                                    <c:when test="${fn:contains(browser, 'FIREFOX')}">
-                                        (hh:mm) <form:input cssClass="pickuptime" path="pickUpTime" />
-                                    </c:when>
-                                    <c:otherwise>
-                                        <form:input cssClass="pickuptime" type="time" path="pickUpTime" />
-                                    </c:otherwise>
-                                </c:choose>
+                                <form:input cssClass="pickuptime" type="time" path="pickUpTime" />
                             </label>
                              <form:errors path="pickUpTime" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
                          </div>
