@@ -16,24 +16,24 @@ import java.security.Principal;
 import java.util.Optional;
 
 @Controller
-public class AdminsController {
+public class UsersController {
     @Autowired
     UserRepository userRepository;
     @Autowired
     UserService userService;
 
-    @GetMapping("/admin/admins")
+    @GetMapping("/admin/users")
     public String instView(Model model, Principal principal) {
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
         } else {
             model.addAttribute("username", null);
         }
-        model.addAttribute("admins", userRepository.findByRoles_Id(2));
-        return "admin-admins";
+        model.addAttribute("users", userRepository.findByRoles_Id(1));
+        return "admin-users";
     }
 
-    @GetMapping("/admin/admins/edit")
+    @GetMapping("/admin/users/edit")
     public String editView(@RequestParam("id") String idString, Model model, Principal principal) {
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
@@ -43,13 +43,13 @@ public class AdminsController {
         Long id = Long.parseLong(idString);
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
-            model.addAttribute("admin", user.get());
+            model.addAttribute("user", user.get());
         }
 
-        return "admin-admins-edit";
+        return "admin-users-edit";
     }
 
-    @RequestMapping(value = "/admin/admins/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/users/edit", method = RequestMethod.POST)
     public String edit(Model model, Principal principal, @RequestParam("username") String username,
                        @RequestParam("password") String password,
                        @RequestParam("password2") String password2,
@@ -61,7 +61,7 @@ public class AdminsController {
                 model.addAttribute("username", null);
             }
             model.addAttribute("msg", true);
-            return "admin-admins-edit";
+            return "admin-users-edit";
         }
         try {
             if (id!=null) {
@@ -70,13 +70,13 @@ public class AdminsController {
                     User actualUser = user.get();
                     actualUser.setUsername(username);
                     actualUser.setPassword(password);
-                    userService.saveAdmin(actualUser);
+                    userService.saveUser(actualUser);
                 }
             } else {
                 User user = new User();
                 user.setUsername(username);
                 user.setPassword(password);
-                userService.saveAdmin(user);
+                userService.saveUser(user);
             }
         } catch (Exception e) {
             return "fail";
@@ -87,11 +87,11 @@ public class AdminsController {
         } else {
             model.addAttribute("username", null);
         }
-        model.addAttribute("admins", userRepository.findByRoles_Id(2));
-        return "admin-admins";
+        model.addAttribute("users", userRepository.findByRoles_Id(1));
+        return "admin-users";
     }
 
-    @RequestMapping(value = "/admin/admins/del", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/users/del", method = RequestMethod.GET)
     public String del(@RequestParam("id") String id, Principal principal, Model model) {
         userRepository.delete(userRepository.getOne(Long.parseLong(id)));
 
@@ -100,11 +100,11 @@ public class AdminsController {
         } else {
             model.addAttribute("username", null);
         }
-        model.addAttribute("admins", userRepository.findByRoles_Id(2));
-        return "admin-admins";
+        model.addAttribute("users", userRepository.findByRoles_Id(1));
+        return "admin-users";
     }
 
-    @GetMapping("/admin/admins/add")
+    @GetMapping("/admin/users/add")
     public String addInstView(Model model, Principal principal) {
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
@@ -112,8 +112,8 @@ public class AdminsController {
             model.addAttribute("username", null);
         }
 
-        model.addAttribute("admin", new User());
+        model.addAttribute("user", new User());
         model.addAttribute("add", true);
-        return "admin-admins-edit";
+        return "admin-users-edit";
     }
 }
