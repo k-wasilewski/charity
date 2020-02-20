@@ -14,9 +14,14 @@ class AppInitializator {
 
     @PostConstruct
     private void init() {
-        User user = new User();
-        user.setUsername("admin@admin.pl");
-        user.setPassword("admin");
-        userService.saveAdmin(user);
+        User admin1 = new User();
+        admin1.setUsername("admin1@admin.pl");
+        admin1.setPassword("admin");
+        userService.saveAdmin(admin1);
+
+        User admin2 = new User();
+        admin2.setUsername("admin2@admin.pl");
+        admin2.setPassword("admin");
+        userService.saveAdmin(admin2);
     }
 }

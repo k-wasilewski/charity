@@ -33,7 +33,10 @@ public class RegisterController {
     public String donationAction(Model model, @RequestParam("username") String username,
                                  @RequestParam("password") String password,
                                  @RequestParam("password2") String password2) {
-        if (!password.equals(password2)) model.addAttribute("msg", true);
+        if (!password.equals(password2)) {
+            model.addAttribute("msg", true);
+            return "redirect:/";
+        }
         try {
             User user = new User();
             user.setUsername(username);
