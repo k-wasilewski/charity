@@ -12,7 +12,7 @@ public class User {
     private String username;
     private String password;
     private int enabled;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     public Long getId() {

@@ -39,6 +39,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void saveAdmin(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(1);
+        Role userRole = roleRepository.findByName("ROLE_ADMIN");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        for (Role r : user.getRoles()) System.out.println(r.getName());
+        userRepository.save(user);
+    }
+
+    @Override
     public void changePwd(User user, String newPwd) {
         user.setPassword(passwordEncoder.encode(newPwd));
         userRepository.save(user);
