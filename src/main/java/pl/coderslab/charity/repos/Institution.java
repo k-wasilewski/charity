@@ -9,7 +9,7 @@ public class Institution {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
-    @NotBlank
+    @NotBlank(message = "Nazwa nie może być pusta")
     private String name;
     private String description;
 

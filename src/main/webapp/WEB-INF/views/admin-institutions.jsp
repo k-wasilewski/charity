@@ -20,6 +20,10 @@
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
+        <div style="text-align: center">
+            <a href="/admin/institutions/add"><button class="btn--small" style="display: inline-block">
+                Dodaj fundację</button></a>
+        </div>
         <ul class="help--slides-items">
             <c:forEach items="${institutions}" var="inst" varStatus="status">
                 <jsp:useBean id="status" type="javax.servlet.jsp.jstl.core.LoopTagStatus" />
@@ -31,7 +35,7 @@
                         <div class="subtitle">${inst.description}</div>
                         <div class="form-group form-group--buttons">
                             <a href="/admin/institutions/edit?id=${inst.id}"><button class="btn">Edytuj</button></a>
-                            <a href=""><button class="btn">Usuń</button></a>
+                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/institutions/del?id=${inst.id}"><button class="btn">Usuń</button></a>
                         </div>
                     </div>
                     </li>
@@ -44,7 +48,7 @@
                         <div class="subtitle">${inst.description}</div>
                         <div class="form-group form-group--buttons">
                             <a href="/admin/institutions/edit?id=${inst.id}"><button class="btn">Edytuj</button></a>
-                            <a href=""><button class="btn">Usuń</button></a>
+                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/institutions/del?id=${inst.id}"><button class="btn">Usuń</button></a>
                         </div>
                     </div>
                     <c:if test="<%=status.isLast()%>"></li></c:if>

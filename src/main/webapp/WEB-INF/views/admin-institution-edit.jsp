@@ -15,19 +15,37 @@
 <jsp:include page="header-admin-regular.jsp"/>
 
 <section class="login-page">
-    <h2>Edytuj instytucję</h2>
-        <form:form modelAttribute="inst" method="post">
+    <c:choose>
+        <c:when test="${add==true}">
+            <h2>Dodaj fundację</h2>
+        </c:when>
+        <c:otherwise>
+            <h2>Edytuj fundację</h2>
+        </c:otherwise>
+    </c:choose>
+        <form:form modelAttribute="inst" action="/admin/instututions/edit" method="post">
             <div class="form-group">
                 <form:input path="name"/>
                 <form:errors path="name" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
             </div>
             <div class="form-group">
-                <form:input path="description"/>
+                <form:textarea path="description" rows="5" />
                 <form:errors path="description" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
             </div>
 
+            <form:hidden path="id" />
+
             <div class="form-group form-group--buttons">
-                <button class="btn" type="submit">Edytuj</button>
+                <button class="btn" type="submit">
+                    <c:choose>
+                        <c:when test="${add==true}">
+                            Dodaj
+                        </c:when>
+                        <c:otherwise>
+                            Edytuj
+                        </c:otherwise>
+                    </c:choose>
+                </button>
             </div>
         </form:form>
 </section>

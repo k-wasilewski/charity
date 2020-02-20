@@ -3,10 +3,8 @@ package pl.coderslab.charity.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.repos.Institution;
 import pl.coderslab.charity.repos.InstitutionRepository;
 
@@ -42,8 +40,52 @@ public class InstitutionsController {
         return "admin-institution-edit";
     }
 
-    @PostMapping("/admin/instututions/edit")
-    public String edit(@Valid @ModelAttribute("inst") Institution institution) {
-        return "ok udalo sie";
+    @RequestMapping(value = "/admin/instututions/edit", method = RequestMethod.POST)
+    public String edit(@ModelAttribute("inst") @Valid Institution institution, BindingResult result,
+                       Principal principal, Model model) {
+        if (result.hasErrors()) {
+            if (principal!=null) {
+                model.addAttribute("username", principal.getName());
+            } else {
+                model.addAttribute("username", null);
+            }
+            model.addAttribute("inst", institution);
+            return "admin-institution-edit";
+        }
+        institutionRepository.save(institution);
+
+        if (principal!=null) {
+            model.addAttribute("username", principal.getName());
+        } else {
+            model.addAttribute("username", null);
+        }
+        model.addAttribute("institutions", institutionRepository.findAll());
+        return "admin-institutions";
+    }
+
+    @RequestMapping(value = "/admin/institutions/del", method = RequestMethod.GET)
+    public String del(@RequestParam("id") String id, Principal principal, Model model) {
+        institutionRepository.delete(institutionRepository.getOne(Integer.parseInt(id)));
+
+        if (principal!=null) {
+            model.addAttribute("username", principal.getName());
+        } else {
+            model.addAttribute("username", null);
+        }
+        model.addAttribute("institutions", institutionRepository.findAll());
+        return "admin-institutions";
+    }
+
+    @GetMapping("/admin/institutions/add")
+    public String addInstView(Model model, Principal principal) {
+        if (principal!=null) {
+            model.addAttribute("username", principal.getName());
+        } else {
+            model.addAttribute("username", null);
+        }
+
+        model.addAttribute("inst", new Institution());
+        model.addAttribute("add", true);
+        return "admin-institution-edit";
     }
 }

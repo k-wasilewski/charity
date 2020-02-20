@@ -27,9 +27,7 @@ private DonationRepository donationRepository;
             for (GrantedAuthority i : authentication.getAuthorities()) {
                 roles.add(i.getAuthority());
             }
-            System.out.println("roles: "+roles);
         }
-
 
         model.addAttribute("institutions", institutionRepository.findAll());
         model.addAttribute("donationsQuantities", donationRepository.customQuantitiesSum());
