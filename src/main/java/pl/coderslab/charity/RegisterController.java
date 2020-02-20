@@ -35,16 +35,23 @@ public class RegisterController {
                                  @RequestParam("password2") String password2) {
         if (!password.equals(password2)) {
             model.addAttribute("msg", true);
-            return "redirect:/";
+            return "index";
         }
         try {
-            User user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
-            userService.saveUser(user);
+            User userDB = userService.findByUserName(username);
+            System.out.println(userDB);
+            if (userDB!=null) {
+                model.addAttribute("msg2", true);
+                return "index";
+            } else {
+                User user = new User();
+                user.setUsername(username);
+                user.setPassword(password);
+                userService.saveUser(user);
+            }
         } catch (Exception e) {
             return "fail";
         }
-        return "redirect:/";
+        return "index";
     }
 }

@@ -14,6 +14,8 @@ public class User {
     private int enabled;
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Role> roles;
+    @Column(name = "blocked", nullable = false, columnDefinition = "int default 0")
+    private int blocked;
 
     public Long getId() {
         return id;
@@ -53,5 +55,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public int getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(int blocked) {
+        this.blocked = blocked;
     }
 }

@@ -17,6 +17,9 @@
     <c:when test="${username==null}">
         <jsp:include page="header.jsp"/>
     </c:when>
+    <c:when test="${user.blocked==1}">
+        <jsp:include page="header-blocked.jsp"/>
+    </c:when>
     <c:otherwise>
         <jsp:include page="header-auth.jsp"/>
     </c:otherwise>

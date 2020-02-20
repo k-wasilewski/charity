@@ -33,7 +33,7 @@
                     <div class="col">
                         <div class="title">${user.username}</div>
                         <div class="form-group form-group--buttons">
-                            <a href="/admin/users/edit?id=${user.id}"><button class="btn">Edytuj</button></a>
+                            <a href="/admin/users/details?id=${user.id}"><button class="btn">Szczegóły</button></a>
                             <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/users/del?id=${user.id}"><button class="btn">Usuń</button></a>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     <div class="col">
                         <div class="title">${user.username}</div>
                         <div class="form-group form-group--buttons">
-                            <a href="/admin/users/edit?id=${user.id}"><button class="btn">Edytuj</button></a>
+                            <a href="/admin/users/details?id=${user.id}"><button class="btn">Szczegóły</button></a>
                             <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/users/del?id=${user.id}"><button class="btn">Usuń</button></a>
                         </div>
                     </div>

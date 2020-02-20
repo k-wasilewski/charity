@@ -26,6 +26,9 @@
     <c:if test="${msg==true}">
         <h3><p style="color: red">Hasła muszą się zgadzać</p></h3>
     </c:if>
+    <c:if test="${msg2==true}">
+        <h3><p style="color: red">Użytkownik o takim emailu już istnieje</p></h3>
+    </c:if>
     <form method="post" action="/admin/users/edit">
         <div class="form-group">
             <c:choose>

@@ -35,6 +35,9 @@
                 <c:if test="${msg==true}">
                     <p style="color: red">Hasła muszą się zgadzać</p>
                 </c:if>
+                <c:if test="${msg2==true}">
+                    <p style="color: red">Użytkownik o takim emailu już istnieje</p>
+                </c:if>
                 Zacznij pomagać!<br/>
                 Oddaj niechciane rzeczy w zaufane ręce
             </h1>

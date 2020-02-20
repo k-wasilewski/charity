@@ -3,9 +3,11 @@ package pl.coderslab.charity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.auth.UserRepository;
 import pl.coderslab.charity.repos.*;
 
 import java.security.Principal;
@@ -19,6 +21,8 @@ public class HomeController {
 private InstitutionRepository institutionRepository;
 @Autowired
 private DonationRepository donationRepository;
+@Autowired
+private UserRepository userRepository;
 
     @RequestMapping("/")
     public String homeAction(Model model, Principal principal, Authentication authentication){
@@ -34,6 +38,7 @@ private DonationRepository donationRepository;
         model.addAttribute("donationsSum", donationRepository.findAll().size());
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
+            model.addAttribute("user", userRepository.findByUsername(principal.getName()));
         } else {
             model.addAttribute("username", null);
         }
