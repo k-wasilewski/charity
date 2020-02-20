@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
 <footer>
@@ -29,12 +29,12 @@
     <div class="bottom-line">
         <span class="bottom-line--copy">Copyright &copy; 2018</span>
         <div class="bottom-line--icons">
-            <a href="#" class="btn btn--small"><img src="<c:url value="resources/images/icon-facebook.svg"/>"/>ZZ</a> <a href="#"
+            <a href="#" class="btn btn--small"><img src="<c:url value="/resources/images/icon-facebook.svg"/>"/>ZZ</a> <a href="#"
                                                                                             class="btn btn--small"><img
-                src="<c:url value="resources/images/icon-instagram.svg"/>"/></a>
+                src="<c:url value="/resources/images/icon-instagram.svg"/>"/></a>
         </div>
     </div>
 </footer>
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="/resources/js/app.js"></script>
 </body>
 </html>

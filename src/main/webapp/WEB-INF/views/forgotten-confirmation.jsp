@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
 <jsp:include page="header-confirmPwd.jsp"/>
 
 <jsp:include page="footer.jsp"/>
 
-<script src="js/app.js"></script>
+<script src="/resources/js/app.js"></script>
 </body>
 </html>

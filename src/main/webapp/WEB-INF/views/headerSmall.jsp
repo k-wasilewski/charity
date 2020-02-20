@@ -29,6 +29,6 @@
         </ul>
     </nav>
 </header>
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="/resources/js/app.js"></script>
 </body>
 </html>

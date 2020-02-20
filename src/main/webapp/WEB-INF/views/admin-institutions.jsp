@@ -10,10 +10,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
-<jsp:include page="header-admin.jsp"/>
+<jsp:include page="header-admin-regular.jsp"/>
 
 <section id="help">
     <h2>Lista fundacji w bazie danych</h2>
@@ -29,6 +29,10 @@
                     <div class="col">
                         <div class="title">${inst.name}</div>
                         <div class="subtitle">${inst.description}</div>
+                        <div class="form-group form-group--buttons">
+                            <a href="/admin/institutions/edit?id=${inst.id}"><button class="btn">Edytuj</button></a>
+                            <a href=""><button class="btn">Usuń</button></a>
+                        </div>
                     </div>
                     </li>
                 </c:if>
@@ -38,6 +42,10 @@
                     <div class="col">
                         <div class="title">${inst.name}</div>
                         <div class="subtitle">${inst.description}</div>
+                        <div class="form-group form-group--buttons">
+                            <a href="/admin/institutions/edit?id=${inst.id}"><button class="btn">Edytuj</button></a>
+                            <a href=""><button class="btn">Usuń</button></a>
+                        </div>
                     </div>
                     <c:if test="<%=status.isLast()%>"></li></c:if>
                 </c:if>
@@ -49,5 +57,6 @@
 </section>
 
 <jsp:include page="footer.jsp"/>
+<script src="/resources/js/app.js"></script>
 </body>
 </html>

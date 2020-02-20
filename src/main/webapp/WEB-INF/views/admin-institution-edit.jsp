@@ -12,32 +12,27 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
-<jsp:include page="header-auth.jsp"/>
+<jsp:include page="header-admin-regular.jsp"/>
 
 <section class="login-page">
-<h2>Zmień hasło</h2>
-<form action="/changePwd" method="post">
-    <div class="form-group">
-        <input type="email" name="username" value="${username}" placeholder="Email" />
-    </div>
-    <div class="form-group">
-        <input type="password" name="old-pwd" placeholder="Stare hasło" />
-    </div>
-    <div class="form-group">
-        <input type="password" name="new-pwd" placeholder="Nowe hasło" />
-    </div>
-    <div class="form-group">
-        <input type="password" name="new-pwd2" placeholder="Powtórz nowe hasło" />
-    </div>
+    <h2>Edytuj instytucję</h2>
+        <form:form modelAttribute="inst" method="post">
+            <div class="form-group">
+                <form:input path="name"/>
+                <form:errors path="name" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
+            </div>
+            <div class="form-group">
+                <form:input path="description"/>
+                <form:errors path="description" cssStyle="color: red" cssClass="form-group--checkbox" element="div" />
+            </div>
 
-    <div class="form-group form-group--buttons">
-        <button class="btn" type="submit">Zmień hasło</button>
-    </div>
-</form>
+            <div class="form-group form-group--buttons">
+                <button class="btn" type="submit">Edytuj</button>
+            </div>
+        </form:form>
 </section>
 
 <jsp:include page="footer.jsp"/>
-
 <script src="/resources/js/app.js"></script>
 </body>
 </html>
