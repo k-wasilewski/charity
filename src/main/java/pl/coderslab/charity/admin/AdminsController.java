@@ -52,7 +52,8 @@ public class AdminsController {
     @RequestMapping(value = "/admin/admins/edit", method = RequestMethod.POST)
     public String edit(Model model, Principal principal, @RequestParam("username") String username,
                        @RequestParam("password") String password,
-                       @RequestParam("password2") String password2) {
+                       @RequestParam("password2") String password2,
+                       @RequestParam("id") Long id) {
         if (!password.equals(password2)) {
             if (principal!=null) {
                 model.addAttribute("username", principal.getName());
@@ -60,12 +61,23 @@ public class AdminsController {
                 model.addAttribute("username", null);
             }
             model.addAttribute("msg", true);
-            return "admin-admins";
+            return "admin-admins-edit";
         }
         try {
-            User user = userRepository.findByUsername(username);
-            user.setPassword(password);
-            userService.saveAdmin(user);
+            if (username!=null && !username.equals("")) {
+                Optional<User> user = userRepository.findById(id);
+                if (user.isPresent()) {
+                    User actualUser = user.get();
+                    actualUser.setUsername(username);
+                    actualUser.setPassword(password);
+                    userService.saveAdmin(actualUser);
+                }
+            } else {
+                User user = new User();
+                user.setUsername(username);
+                user.setPassword(password);
+                userService.saveAdmin(user);
+            }
         } catch (Exception e) {
             return "fail";
         }
