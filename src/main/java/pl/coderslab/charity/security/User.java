@@ -20,6 +20,12 @@ public class User implements UserDetails {
     private Set<Role> roles;
     @Column(name = "blocked", nullable = false, columnDefinition = "int default 0")
     private int blocked;
+    private String token;
+
+    public User() {
+        super();
+        this.enabled=0;
+    }
 
     public Long getId() {
         return id;
@@ -87,6 +93,14 @@ public class User implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

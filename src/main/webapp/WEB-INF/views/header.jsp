@@ -38,6 +38,18 @@
                 <c:if test="${msg2==true}">
                     <p style="color: red">Użytkownik o takim emailu już istnieje</p>
                 </c:if>
+                <c:if test="${msg5==true}">
+                    <p style="color: red"> Rejestracja nieudana </p>
+                </c:if>
+                <c:if test="${msg6==true}">
+                    <p style="color: red"> Niepoprawny token aktywacyjny </p>
+                </c:if>
+                <c:if test="${msg7==true}">
+                    <p style="color: red"> Token aktywacyjny przeterminowany </p>
+                </c:if>
+                <c:if test="${msg8==true}">
+                    <p style="font-weight: bold"> Na Twój email wysłaliśmy link aktywacyjny, ważny przez godzinę </p>
+                </c:if>
                 Zacznij pomagać!<br/>
                 Oddaj niechciane rzeczy w zaufane ręce
             </h1>
