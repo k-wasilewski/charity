@@ -54,6 +54,7 @@ public class DonationController {
     public String donationAction(@ModelAttribute("donation") @Valid Donation donation, BindingResult result,
                                  Model model, HttpServletRequest req, Principal principal) {
         if (result.hasErrors()) {
+            System.out.println(result);
             model.addAttribute("categories", categoryRepository.findAll());
             model.addAttribute("institutions", institutionRepository.findAll());
             model.addAttribute("donation", donation);
@@ -68,12 +69,17 @@ public class DonationController {
             } else {
                 model.addAttribute("username", null);
             }
-
+            model.addAttribute("user", userRepository.findByUsername(principal.getName()));
             return "auth/donationForm";
+        }
+        if (principal!=null) {
+            model.addAttribute("username", principal.getName());
+        } else {
+            model.addAttribute("username", null);
         }
         donationRepository.save(donation);
         model.addAttribute("user", userRepository.findByUsername(principal.getName()));
-        return "redirect:/auth/confirm";
+        return "auth/form-confirmation";
     }
 
     @RequestMapping("/auth/confirm")

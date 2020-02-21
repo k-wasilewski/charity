@@ -1,6 +1,7 @@
 package pl.coderslab.charity.repos;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.charity.auth.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -22,6 +23,8 @@ public class Donation {
     @ManyToOne
     @NotNull(message = "Wybierz instytucję")
     private Institution institution;
+    @ManyToOne
+    private User owner;
     @NotBlank(message = "Podaj ulicę")
     private String street;
     @NotBlank(message = "Podaj miasto")
@@ -117,7 +120,11 @@ public class Donation {
         this.pickUpComment = pickUpComment;
     }
 
-    public String toString() {
-        return ""+id+quantity+categories+institution+street+city+zipCode+pickUpDate+pickUpTime+pickUpComment;
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

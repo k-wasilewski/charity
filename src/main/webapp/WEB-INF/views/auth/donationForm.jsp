@@ -212,6 +212,8 @@
                             </div>
                         </div>
 
+                        <form:hidden path="owner" value="${user.username}" />
+
                         <div class="form-group form-group--buttons">
                             <button type="button" class="btn prev-step">Wstecz</button>
                             <button type="Asubmit" class="btn">Potwierdzam</button>
