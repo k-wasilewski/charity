@@ -16,6 +16,8 @@ import pl.coderslab.charity.security.UserService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class RegisterController {
@@ -40,6 +42,13 @@ public class RegisterController {
                                  WebRequest request) {
         if (!password.equals(password2)) {
             model.addAttribute("msg", true);
+            return "index";
+        }
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(password);
+        if (!m.find()) {
+            model.addAttribute("msg10", true);
             return "index";
         }
         try {

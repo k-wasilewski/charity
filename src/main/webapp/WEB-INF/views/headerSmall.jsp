@@ -44,6 +44,10 @@
                 <c:if test="${msg4==true}">
                     <p style="color: red">Nie udało się zmienić hasła</p>
                 </c:if>
+                <c:if test="${msg10==true}">
+                    <p style="color: red"> Hasło musi zawierać co najmniej jedną małą literę, jedną dużą literę,
+                        jedną cyfrę i jeden znak specjalny !@#$%^&* oraz mieć co najmniej 8 znaków </p>
+                </c:if>
             </h1>
         </div>
     </div>

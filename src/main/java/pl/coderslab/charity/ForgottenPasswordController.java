@@ -18,6 +18,8 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class ForgottenPasswordController {
@@ -42,10 +44,10 @@ public class ForgottenPasswordController {
         }
         String token = UUID.randomUUID().toString();
         userService.createVerificationToken(user, token);
+        String subject = "\"Oddam w dobre ręce\" - Twój link do zmiany hasła";
 
         String link = "http://localhost:8081" + "/forgottenConfirm?token=" + token;
-        //userService.changePwd(userRepository.findByUsername(email), newPassword);
-        emailService.sendSimpleMessage(email, "Forgotten password", link);
+        emailService.sendSimpleMessage(email, subject, link);
         model.addAttribute("msg8", true);
         return "index";
     }
@@ -80,6 +82,13 @@ public class ForgottenPasswordController {
             model.addAttribute("msg3", true);
             return "changePwd";
         }
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(password);
+        if (!m.find()) {
+            model.addAttribute("msg10", true);
+            return "index";
+        }
         try {
             User user = userService.findByUserName(username);
             user.setPassword(password);
@@ -91,20 +100,5 @@ public class ForgottenPasswordController {
         }
         model.addAttribute("msg9", true);
         return "index";
-    }
-
-    public String generateRandomSpecialCharacters(int length) {
-        int leftLimit = 48; // numeral '0'
-        int rightLimit = 122; // letter 'z'
-        int targetStringLength = 10;
-        Random random = new Random();
-
-        String generatedString = random.ints(leftLimit, rightLimit + 1)
-                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-                .limit(targetStringLength)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
-
-        return generatedString;
     }
 }
