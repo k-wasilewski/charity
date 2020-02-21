@@ -83,4 +83,72 @@ public class AllDonationsController {
 
         return "auth/allDonations";
     }
+
+    @GetMapping("/auth/donation/pickedupOn")
+    public String pickedupOn(Model model, Principal principal, @RequestParam("id") int id) {
+        if (principal!=null) {
+            model.addAttribute("username", principal.getName());
+        } else {
+            model.addAttribute("username", null);
+        }
+
+        Donation don = donationRepository.getOne(id);
+        don.setPickedUp(1);
+        donationRepository.save(don);
+
+        User user = userRepository.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+
+        List<Donation> sortedDonations = donationRepository.findAllByOwner(user).stream()
+                .sorted((a, b)->{
+                    int pickedUp = (a.getPickedUp()>b.getPickedUp() ? 1 : -1);
+                    if (a.getPickedUp()==b.getPickedUp()) pickedUp=0;
+                    if (pickedUp!=0) return pickedUp;
+
+                    int pickUpDate = (a.getPickUpDate().compareTo(b.getPickUpDate()));
+                    if (a.getPickUpDate()==b.getPickUpDate()) pickUpDate=0;
+                    if (pickUpDate!=0) return pickUpDate;
+
+                    return (a.getCreated().compareTo(b.getCreated()));
+                })
+                .collect(Collectors.toList());
+
+        model.addAttribute("donations", sortedDonations);
+
+        return "auth/allDonations";
+    }
+
+    @GetMapping("/auth/donation/pickedupOff")
+    public String pickedupOff(Model model, Principal principal, @RequestParam("id") int id) {
+        if (principal!=null) {
+            model.addAttribute("username", principal.getName());
+        } else {
+            model.addAttribute("username", null);
+        }
+
+        Donation don = donationRepository.getOne(id);
+        don.setPickedUp(0);
+        donationRepository.save(don);
+
+        User user = userRepository.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+
+        List<Donation> sortedDonations = donationRepository.findAllByOwner(user).stream()
+                .sorted((a, b)->{
+                    int pickedUp = (a.getPickedUp()>b.getPickedUp() ? 1 : -1);
+                    if (a.getPickedUp()==b.getPickedUp()) pickedUp=0;
+                    if (pickedUp!=0) return pickedUp;
+
+                    int pickUpDate = (a.getPickUpDate().compareTo(b.getPickUpDate()));
+                    if (a.getPickUpDate()==b.getPickUpDate()) pickUpDate=0;
+                    if (pickUpDate!=0) return pickUpDate;
+
+                    return (a.getCreated().compareTo(b.getCreated()));
+                })
+                .collect(Collectors.toList());
+
+        model.addAttribute("donations", sortedDonations);
+
+        return "auth/allDonations";
+    }
 }

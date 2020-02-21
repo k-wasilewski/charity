@@ -54,6 +54,14 @@
 
                         <div style="font-size: large" class="form-group form-group--buttons">
                             <a href="/auth/donation?id=${don.id}"><button class="btn">Edytuj</button></a>
+                            <c:choose>
+                                <c:when test="${don.pickedUp==0}">
+                                    <a onclick="return confirm('Czy na pewno chcesz zmienić status?')" href="/auth/donation/pickedupOn?id=${don.id}"><button class="btn">Oznacz jako przekazany</button></a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a onclick="return confirm('Czy na pewno chcesz zmienić status??')" href="/auth/donation/pickedupOff?id=${don.id}"><button class="btn">Oznacz jako nieprzekazany</button></a>
+                                </c:otherwise>
+                            </c:choose>
                             <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/auth/donation/del?id=${don.id}"><button class="btn">Usuń</button></a>
                         </div>
                     </c:forEach>
