@@ -35,6 +35,16 @@
         </ul>
     </nav>
 
+    <div class="slogan container container--90">
+        <div class="slogan--item">
+            <h1>
+                <c:if test="${msg==true}">
+                <p style="color: red">Nie możesz usunąć sam siebie</p>
+                </c:if>
+            </h1>
+        </div>
+    </div>
+
 </header>
 <script src="/resources/js/app.js"></script>
 </body>

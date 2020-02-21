@@ -89,6 +89,15 @@ public class AdminsController {
 
     @RequestMapping(value = "/admin/admins/del", method = RequestMethod.GET)
     public String del(@RequestParam("id") String id, Principal principal, Model model) {
+        String currentUsername = principal.getName();
+        String usernameToDel = userRepository.getOne(Long.parseLong(id)).getUsername();
+        System.out.println(currentUsername);
+        System.out.println(usernameToDel);
+        if (currentUsername.equals(usernameToDel)) {
+            model.addAttribute("msg", true);
+            return "admin/admin-admins";
+        }
+
         userRepository.delete(userRepository.getOne(Long.parseLong(id)));
 
         if (principal!=null) {
