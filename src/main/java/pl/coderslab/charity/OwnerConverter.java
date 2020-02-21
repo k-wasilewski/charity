@@ -2,8 +2,8 @@ package pl.coderslab.charity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
-import pl.coderslab.charity.auth.User;
-import pl.coderslab.charity.auth.UserRepository;
+import pl.coderslab.charity.security.User;
+import pl.coderslab.charity.security.UserRepository;
 
 public class OwnerConverter implements Converter<String, User> {
     @Autowired

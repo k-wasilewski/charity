@@ -2,8 +2,8 @@ package pl.coderslab.charity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.coderslab.charity.auth.User;
-import pl.coderslab.charity.auth.UserService;
+import pl.coderslab.charity.security.User;
+import pl.coderslab.charity.security.UserService;
 
 import javax.annotation.PostConstruct;
 

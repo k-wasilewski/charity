@@ -1,7 +1,7 @@
 package pl.coderslab.charity.repos;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import pl.coderslab.charity.auth.User;
+import pl.coderslab.charity.security.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

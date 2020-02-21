@@ -1,12 +1,10 @@
-package pl.coderslab.charity.auth;
+package pl.coderslab.charity.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.coderslab.charity.repos.Donation;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 @Entity
