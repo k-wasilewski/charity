@@ -33,7 +33,7 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
-                <p style="color: red">Musisz aktywować konto lub ostałeś zablokowany przez administratora</p>
+                <p style="color: red">Musisz aktywować konto lub zostałeś zablokowany przez administratora</p>
             </h1>
         </div>
     </div>

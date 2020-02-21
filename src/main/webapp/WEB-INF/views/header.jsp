@@ -50,6 +50,9 @@
                 <c:if test="${msg8==true}">
                     <p style="font-weight: bold"> Na Twój email wysłaliśmy link aktywacyjny, ważny przez godzinę </p>
                 </c:if>
+                <c:if test="${msg9==true}">
+                    <p style="font-weight: bold"> Zmieniono hasło </p>
+                </c:if>
                 Zacznij pomagać!<br/>
                 Oddaj niechciane rzeczy w zaufane ręce
             </h1>

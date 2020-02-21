@@ -28,6 +28,25 @@
             <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
+
+    <div class="slogan container container--90">
+        <div class="slogan--item">
+            <h1>
+                <c:if test="${msg1==true}">
+                <p style="color: red">Niepoprawny token</p>
+                </c:if>
+                <c:if test="${msg2==true}">
+                    <p style="color: red">Token przeterminowany</p>
+                </c:if>
+                <c:if test="${msg3==true}">
+                    <p style="color: red">Hasła muszą się zgadzać</p>
+                </c:if>
+                <c:if test="${msg4==true}">
+                    <p style="color: red">Nie udało się zmienić hasła</p>
+                </c:if>
+            </h1>
+        </div>
+    </div>
 </header>
 <script src="/resources/js/app.js"></script>
 </body>
