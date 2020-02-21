@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.repos.Institution;
 import pl.coderslab.charity.repos.InstitutionRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -15,6 +17,8 @@ import java.security.Principal;
 public class InstitutionsController {
     @Autowired
     InstitutionRepository institutionRepository;
+    @PersistenceContext
+    EntityManager entityManager;
 
     @GetMapping("/admin/institutions")
     public String instView(Model model, Principal principal) {
@@ -24,7 +28,7 @@ public class InstitutionsController {
                 model.addAttribute("username", null);
             }
             model.addAttribute("institutions", institutionRepository.findAll());
-            return "admin-institutions";
+            return "admin/admin-institutions";
     }
 
     @GetMapping("/admin/institutions/edit")
@@ -37,7 +41,7 @@ public class InstitutionsController {
         int id = Integer.parseInt(idString);
         model.addAttribute("inst", institutionRepository.findById(id));
 
-        return "admin-institution-edit";
+        return "admin/admin-institution-edit";
     }
 
     @RequestMapping(value = "/admin/instututions/edit", method = RequestMethod.POST)
@@ -50,7 +54,7 @@ public class InstitutionsController {
                 model.addAttribute("username", null);
             }
             model.addAttribute("inst", institution);
-            return "admin-institution-edit";
+            return "admin/admin-institution-edit";
         }
         institutionRepository.save(institution);
 
@@ -60,11 +64,13 @@ public class InstitutionsController {
             model.addAttribute("username", null);
         }
         model.addAttribute("institutions", institutionRepository.findAll());
-        return "admin-institutions";
+        return "admin/admin-institutions";
     }
 
     @RequestMapping(value = "/admin/institutions/del", method = RequestMethod.GET)
     public String del(@RequestParam("id") String id, Principal principal, Model model) {
+
+        //delete all donations with that institution
         institutionRepository.delete(institutionRepository.getOne(Integer.parseInt(id)));
 
         if (principal!=null) {
@@ -73,7 +79,7 @@ public class InstitutionsController {
             model.addAttribute("username", null);
         }
         model.addAttribute("institutions", institutionRepository.findAll());
-        return "admin-institutions";
+        return "admin/admin-institutions";
     }
 
     @GetMapping("/admin/institutions/add")
@@ -86,6 +92,6 @@ public class InstitutionsController {
 
         model.addAttribute("inst", new Institution());
         model.addAttribute("add", true);
-        return "admin-institution-edit";
+        return "admin/admin-institution-edit";
     }
 }

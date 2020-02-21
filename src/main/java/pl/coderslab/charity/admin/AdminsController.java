@@ -3,15 +3,11 @@ package pl.coderslab.charity.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.auth.User;
 import pl.coderslab.charity.auth.UserRepository;
 import pl.coderslab.charity.auth.UserService;
-import pl.coderslab.charity.repos.Institution;
-import pl.coderslab.charity.repos.InstitutionRepository;
 
-import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -30,7 +26,7 @@ public class AdminsController {
             model.addAttribute("username", null);
         }
         model.addAttribute("admins", userRepository.findByRoles_Id(2));
-        return "admin-admins";
+        return "admin/admin-admins";
     }
 
     @GetMapping("/admin/admins/edit")
@@ -46,7 +42,7 @@ public class AdminsController {
             model.addAttribute("admin", user.get());
         }
 
-        return "admin-admins-edit";
+        return "admin/admin-admins-edit";
     }
 
     @RequestMapping(value = "/admin/admins/edit", method = RequestMethod.POST)
@@ -61,7 +57,7 @@ public class AdminsController {
                 model.addAttribute("username", null);
             }
             model.addAttribute("msg", true);
-            return "admin-admins-edit";
+            return "admin/admin-admins-edit";
         }
         try {
             if (id!=null) {
@@ -88,7 +84,7 @@ public class AdminsController {
             model.addAttribute("username", null);
         }
         model.addAttribute("admins", userRepository.findByRoles_Id(2));
-        return "admin-admins";
+        return "admin/admin-admins";
     }
 
     @RequestMapping(value = "/admin/admins/del", method = RequestMethod.GET)
@@ -101,7 +97,7 @@ public class AdminsController {
             model.addAttribute("username", null);
         }
         model.addAttribute("admins", userRepository.findByRoles_Id(2));
-        return "admin-admins";
+        return "admin/admin-admins";
     }
 
     @GetMapping("/admin/admins/add")
@@ -114,6 +110,6 @@ public class AdminsController {
 
         model.addAttribute("admin", new User());
         model.addAttribute("add", true);
-        return "admin-admins-edit";
+        return "admin/admin-admins-edit";
     }
 }

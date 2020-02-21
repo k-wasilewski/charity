@@ -38,11 +38,11 @@
         </form>
         </section>
 
-        <jsp:include page="footer.jsp"/>
+        <jsp:include page="../footer.jsp"/>
     </c:when>
     <c:otherwise>
         <jsp:include page="header-blocked.jsp"/>
-        <jsp:include page="footer.jsp"/>
+        <jsp:include page="../footer.jsp"/>
     </c:otherwise>
 </c:choose>
 

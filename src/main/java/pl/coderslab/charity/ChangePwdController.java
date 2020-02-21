@@ -27,7 +27,7 @@ public class ChangePwdController {
             model.addAttribute("username", null);
         }
         model.addAttribute("user", userRepository.findByUsername(principal.getName()));
-        return "changePwd";
+        return "auth/changePwd";
     }
 
     @PostMapping("/auth/changePwd")

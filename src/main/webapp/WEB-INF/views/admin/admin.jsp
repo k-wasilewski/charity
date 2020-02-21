@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="header-admin.jsp"/>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 
 <script src="/resources/js/app.js"></script>
 </body>

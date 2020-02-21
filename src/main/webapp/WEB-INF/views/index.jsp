@@ -18,10 +18,10 @@
         <jsp:include page="header.jsp"/>
     </c:when>
     <c:when test="${user.blocked==1}">
-        <jsp:include page="header-blocked.jsp"/>
+        <jsp:include page="auth/header-blocked.jsp"/>
     </c:when>
     <c:otherwise>
-        <jsp:include page="header-auth.jsp"/>
+        <jsp:include page="auth/header-auth.jsp"/>
     </c:otherwise>
 </c:choose>
 

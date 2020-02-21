@@ -3,15 +3,11 @@ package pl.coderslab.charity.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.auth.User;
 import pl.coderslab.charity.auth.UserRepository;
 import pl.coderslab.charity.auth.UserService;
-import pl.coderslab.charity.repos.Institution;
-import pl.coderslab.charity.repos.InstitutionRepository;
 
-import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -30,7 +26,7 @@ public class UsersController {
             model.addAttribute("username", null);
         }
         model.addAttribute("users", userRepository.findByRoles_Id(1));
-        return "admin-users";
+        return "admin/admin-users";
     }
 
     @GetMapping("/admin/users/edit")
@@ -46,7 +42,7 @@ public class UsersController {
             model.addAttribute("user", user.get());
         }
 
-        return "admin-users-edit";
+        return "admin/admin-users-edit";
     }
 
     @RequestMapping(value = "/admin/users/edit", method = RequestMethod.POST)
@@ -61,7 +57,7 @@ public class UsersController {
                 model.addAttribute("username", null);
             }
             model.addAttribute("msg", true);
-            return "admin-users-edit";
+            return "admin/admin-users-edit";
         }
         try {
             if (id != null) {
@@ -75,7 +71,7 @@ public class UsersController {
             } else {
                 if (userService.findByUserName(username)!=null) {
                     model.addAttribute("msg2", true);
-                    return "admin-users-edit";
+                    return "admin/admin-users-edit";
                 } else {
                     User user = new User();
                     user.setUsername(username);
@@ -93,7 +89,7 @@ public class UsersController {
             model.addAttribute("username", null);
         }
         model.addAttribute("users", userRepository.findByRoles_Id(1));
-        return "admin-users";
+        return "admin/admin-users";
     }
 
     @RequestMapping(value = "/admin/users/del", method = RequestMethod.GET)
@@ -106,7 +102,7 @@ public class UsersController {
             model.addAttribute("username", null);
         }
         model.addAttribute("users", userRepository.findByRoles_Id(1));
-        return "admin-users";
+        return "admin/admin-users";
     }
 
     @GetMapping("/admin/users/add")
@@ -119,7 +115,7 @@ public class UsersController {
 
         model.addAttribute("user", new User());
         model.addAttribute("add", true);
-        return "admin-users-edit";
+        return "admin/admin-users-edit";
     }
 
     @RequestMapping(value = "/admin/users/details", method = RequestMethod.GET)
@@ -136,7 +132,7 @@ public class UsersController {
 
             model.addAttribute("user", actualUser);
         }
-        return "admin-users-details";
+        return "admin/admin-users-details";
     }
 
     @RequestMapping(value = "/admin/users/block", method = RequestMethod.GET)
@@ -154,6 +150,6 @@ public class UsersController {
             userRepository.save(actualUser);
         }
         model.addAttribute("users", userRepository.findByRoles_Id(1));
-        return "admin-users";
+        return "admin/admin-users";
     }
 }

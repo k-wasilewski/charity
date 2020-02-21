@@ -16,25 +16,26 @@
 <jsp:include page="header-admin-regular.jsp"/>
 
 <section id="help">
-    <h2>Lista administratorów w bazie danych</h2>
+    <h2>Lista fundacji w bazie danych</h2>
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
         <div style="text-align: center">
-            <a href="/admin/admins/add"><button class="btn--small" style="display: inline-block">
-                Dodaj administratora</button></a>
+            <a href="/admin/institutions/add"><button class="btn--small" style="display: inline-block">
+                Dodaj fundację</button></a>
         </div>
         <ul class="help--slides-items">
-            <c:forEach items="${admins}" var="admin" varStatus="status">
+            <c:forEach items="${institutions}" var="inst" varStatus="status">
                 <jsp:useBean id="status" type="javax.servlet.jsp.jstl.core.LoopTagStatus" />
 
 
                 <c:if test="<%=status.getCount()%2==0%>">
                     <div class="col">
-                        <div class="title">${admin.username}</div>
+                        <div class="title">${inst.name}</div>
+                        <div class="subtitle">${inst.description}</div>
                         <div class="form-group form-group--buttons">
-                            <a href="/admin/admins/edit?id=${admin.id}"><button class="btn">Edytuj</button></a>
-                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/admins/del?id=${admin.id}"><button class="btn">Usuń</button></a>
+                            <a href="/admin/institutions/edit?id=${inst.id}"><button class="btn">Edytuj</button></a>
+                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/institutions/del?id=${inst.id}"><button class="btn">Usuń</button></a>
                         </div>
                     </div>
                     </li>
@@ -43,10 +44,11 @@
                 <c:if test="<%=status.getCount()%2!=0%>">
                     <li>
                     <div class="col">
-                        <div class="title">${admin.username}</div>
+                        <div class="title">${inst.name}</div>
+                        <div class="subtitle">${inst.description}</div>
                         <div class="form-group form-group--buttons">
-                            <a href="/admin/admins/edit?id=${admin.id}"><button class="btn">Edytuj</button></a>
-                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/admins/del?id=${admin.id}"><button class="btn">Usuń</button></a>
+                            <a href="/admin/institutions/edit?id=${inst.id}"><button class="btn">Edytuj</button></a>
+                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/institutions/del?id=${inst.id}"><button class="btn">Usuń</button></a>
                         </div>
                     </div>
                     <c:if test="<%=status.isLast()%>"></li></c:if>
@@ -58,7 +60,7 @@
 
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 <script src="/resources/js/app.js"></script>
 </body>
 </html>

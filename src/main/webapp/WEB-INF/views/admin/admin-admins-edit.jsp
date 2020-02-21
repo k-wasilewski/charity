@@ -17,26 +17,23 @@
 <section class="login-page">
     <c:choose>
         <c:when test="${add==true}">
-            <h2>Dodaj użytkownika</h2>
+            <h2>Dodaj administratora</h2>
         </c:when>
         <c:otherwise>
-            <h2>Edytuj użytkownika</h2>
+            <h2>Edytuj administratora</h2>
         </c:otherwise>
     </c:choose>
     <c:if test="${msg==true}">
         <h3><p style="color: red">Hasła muszą się zgadzać</p></h3>
     </c:if>
-    <c:if test="${msg2==true}">
-        <h3><p style="color: red">Użytkownik o takim emailu już istnieje</p></h3>
-    </c:if>
-    <form method="post" action="/admin/users/edit">
+    <form method="post" action="/admin/admins/edit">
         <div class="form-group">
             <c:choose>
-                <c:when test="${empty user.username}">
+                <c:when test="${empty admin.username}">
                     <input type="email" name="username" placeholder="Email"/>
                 </c:when>
                 <c:otherwise>
-                    <input type="email" name="username" placeholder="${user.username}"/>
+                    <input type="email" name="username" placeholder="${admin.username}"/>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -46,7 +43,7 @@
         <div class="form-group">
             <input type="password" name="password2" placeholder="Powtórz hasło" />
         </div>
-        <input hidden type="number" name="id" value="${user.id}">
+        <input hidden type="number" name="id" value="${admin.id}">
 
             <div class="form-group form-group--buttons">
                 <button class="btn" type="submit">
@@ -63,7 +60,7 @@
         </form>
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 <script src="/resources/js/app.js"></script>
 </body>
 </html>

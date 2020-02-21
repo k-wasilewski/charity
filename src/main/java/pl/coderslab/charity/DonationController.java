@@ -2,7 +2,6 @@ package pl.coderslab.charity;
 
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,7 +47,7 @@ public class DonationController {
         }
 
         model.addAttribute("user", userRepository.findByUsername(principal.getName()));
-        return "donationForm";
+        return "auth/donationForm";
     }
 
     @PostMapping("/auth/donation")
@@ -70,7 +69,7 @@ public class DonationController {
                 model.addAttribute("username", null);
             }
 
-            return "donationForm";
+            return "auth/donationForm";
         }
         donationRepository.save(donation);
         model.addAttribute("user", userRepository.findByUsername(principal.getName()));
@@ -86,6 +85,6 @@ public class DonationController {
         }
 
         model.addAttribute("user", userRepository.findByUsername(principal.getName()));
-        return "form-confirmation";
+        return "auth/form-confirmation";
     }
 }
