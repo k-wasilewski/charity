@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.auth.UserRepository;
 import pl.coderslab.charity.auth.UserService;
 
+import java.security.Principal;
 import java.util.Random;
 
 @Controller
@@ -22,12 +23,12 @@ public class ForgottenPasswordController {
     UserService userService;
 
     @GetMapping("/forgotten")
-    public String forgotten() {
+    public String forgotten(Model model, Principal principal) {
         return "forgottenPwd";
     }
 
     @PostMapping("/forgotten")
-    public String sendEmail(Model model, @RequestParam("email") String email) {
+    public String sendEmail(Model model, @RequestParam("email") String email, Principal principal) {
         String password = userRepository.getPassword(email);
         if (password==null) {
             model.addAttribute("msg", true);
@@ -36,6 +37,7 @@ public class ForgottenPasswordController {
         String newPassword = generateRandomSpecialCharacters(8);
         userService.changePwd(userRepository.findByUsername(email), newPassword);
         emailService.sendSimpleMessage(email, "Forgotten password", newPassword);
+        model.addAttribute("user", userRepository.findByUsername(principal.getName()));
         return "forgotten-confirmation";
     }
 

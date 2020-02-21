@@ -19,7 +19,7 @@
             <li class="logged-user">
                 Witaj ${username}
                 <ul class="dropdown">
-                    <li><a href="/changePwd">Zmień hasło</a></li>
+                    <li><a href="/auth/changePwd">Zmień hasło</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
@@ -40,7 +40,7 @@
 
     <div class="slogan container container--90">
         <h2>
-            Dziękujemy za przesłanie formularza Na maila prześlemy wszelkie
+            Dziękujemy za przesłanie formularza. Na maila prześlemy wszelkie
             informacje o odbiorze.
         </h2>
     </div>

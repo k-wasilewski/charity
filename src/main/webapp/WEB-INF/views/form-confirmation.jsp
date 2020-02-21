@@ -12,7 +12,14 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
   </head>
   <body>
-  <jsp:include page="header-confirm.jsp"/>
+<c:choose>
+  <c:when test="${user.blocked==0}">
+    <jsp:include page="header-confirm.jsp"/>
+  </c:when>
+  <c:otherwise>
+    <jsp:include page="header-blocked.jsp"/>
+  </c:otherwise>
+</c:choose>
 
   <jsp:include page="footer.jsp"/>
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.auth.UserRepository;
 import pl.coderslab.charity.repos.CategoryRepository;
 import pl.coderslab.charity.repos.Donation;
 import pl.coderslab.charity.repos.DonationRepository;
@@ -27,6 +28,8 @@ public class DonationController {
     private CategoryRepository categoryRepository;
     @Autowired
     private InstitutionRepository institutionRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/auth/donation")
     public String donationForm(Model model, HttpServletRequest req, Principal principal){
@@ -44,6 +47,7 @@ public class DonationController {
             model.addAttribute("username", null);
         }
 
+        model.addAttribute("user", userRepository.findByUsername(principal.getName()));
         return "donationForm";
     }
 
@@ -69,6 +73,7 @@ public class DonationController {
             return "donationForm";
         }
         donationRepository.save(donation);
+        model.addAttribute("user", userRepository.findByUsername(principal.getName()));
         return "redirect:/auth/confirm";
     }
 
@@ -80,6 +85,7 @@ public class DonationController {
             model.addAttribute("username", null);
         }
 
+        model.addAttribute("user", userRepository.findByUsername(principal.getName()));
         return "form-confirmation";
     }
 }

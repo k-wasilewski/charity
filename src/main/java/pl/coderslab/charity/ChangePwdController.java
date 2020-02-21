@@ -19,17 +19,18 @@ public class ChangePwdController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/changePwd")
+    @GetMapping("/auth/changePwd")
     public String changePwd(Principal principal, Model model) {
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
         } else {
             model.addAttribute("username", null);
         }
+        model.addAttribute("user", userRepository.findByUsername(principal.getName()));
         return "changePwd";
     }
 
-    @PostMapping("/changePwd")
+    @PostMapping("/auth/changePwd")
     public String actualChangePwd(Model model, @RequestParam("old-pwd") String oldPwd,
                                   @RequestParam("new-pwd") String newPwd,
                                   @RequestParam("new-pwd2") String newPwd2,
@@ -56,6 +57,7 @@ public class ChangePwdController {
             model.addAttribute("username", username);
             model.addAttribute("msg2", true);
         }
+        model.addAttribute("user", userRepository.findByUsername(principal.getName()));
         return "index";
     }
 }
