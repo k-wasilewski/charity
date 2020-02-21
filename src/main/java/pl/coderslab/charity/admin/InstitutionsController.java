@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.repos.Donation;
+import pl.coderslab.charity.repos.DonationRepository;
 import pl.coderslab.charity.repos.Institution;
 import pl.coderslab.charity.repos.InstitutionRepository;
 
@@ -12,13 +14,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class InstitutionsController {
     @Autowired
     InstitutionRepository institutionRepository;
-    @PersistenceContext
-    EntityManager entityManager;
+    @Autowired
+    DonationRepository donationRepository;
 
     @GetMapping("/admin/institutions")
     public String instView(Model model, Principal principal) {
@@ -69,9 +72,13 @@ public class InstitutionsController {
 
     @RequestMapping(value = "/admin/institutions/del", method = RequestMethod.GET)
     public String del(@RequestParam("id") String id, Principal principal, Model model) {
+        Institution instTodel = institutionRepository.getOne(Integer.parseInt(id));
+        List<Donation> donationsTodel =  donationRepository.findAllByInstitution(instTodel);
 
-        //delete all donations with that institution
-        institutionRepository.delete(institutionRepository.getOne(Integer.parseInt(id)));
+        for (Donation d : donationsTodel) {
+            donationRepository.delete(d);
+        }
+        institutionRepository.delete(instTodel);
 
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
