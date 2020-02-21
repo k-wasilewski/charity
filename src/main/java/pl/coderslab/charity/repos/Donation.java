@@ -39,6 +39,10 @@ public class Donation {
     @NotNull(message = "Podaj godzinę")
     private LocalTime pickUpTime;
     private String pickUpComment;
+    @Column(name = "pickedUp", nullable = false, columnDefinition = "int default 0")
+    private int pickedUp;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate created;
 
     public Integer getId() {
         return id;
@@ -126,5 +130,21 @@ public class Donation {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public int getPickedUp() {
+        return pickedUp;
+    }
+
+    public void setPickedUp(int pickedUp) {
+        this.pickedUp = pickedUp;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
     }
 }

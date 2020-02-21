@@ -28,6 +28,7 @@
                 </div>
                 <ul class="help--slides-items">
                     <c:forEach items="${donations}" var="don" varStatus="status">
+                        ${don.id};
                         <div style="font-size: x-large; font-weight: bold" class="title">${don.categories} dla Fundacji ${don.institution}</div>
                         <div style="font-size: large" class="subtitle">${don.quantity} worków</div>
                         <br>
@@ -39,6 +40,17 @@
                         <div style="font-size: large" class="subtitle">${don.pickUpTime}, ${don.pickUpDate}</div>
                         <br>
                         <div style="font-size: large" class="subtitle">${don.pickUpComment}</div>
+                        <br>
+                        <c:choose>
+                            <c:when test="${don.pickedUp==1}">
+                                <div style="font-size: large" class="subtitle">Dar został odebrany</div>
+                            </c:when>
+                            <c:otherwise>
+                                <div style="font-size: large" class="subtitle">Dar nie został jeszcze odebrany</div>
+                            </c:otherwise>
+                        </c:choose>
+                        <br>
+                        <div style="font-size: large" class="subtitle">Data utworzenia wpisu: ${don.created}</div>
 
                         <div style="font-size: large" class="form-group form-group--buttons">
                             <a href="/auth/donation?id=${don.id}"><button class="btn">Edytuj</button></a>

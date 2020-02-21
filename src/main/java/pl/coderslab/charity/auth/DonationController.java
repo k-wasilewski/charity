@@ -15,6 +15,7 @@ import pl.coderslab.charity.repos.InstitutionRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
 
 @Controller
 public class DonationController {
@@ -77,6 +78,7 @@ public class DonationController {
         } else {
             model.addAttribute("username", null);
         }
+        donation.setCreated(LocalDate.now());
         donationRepository.save(donation);
         model.addAttribute("user", userRepository.findByUsername(principal.getName()));
         return "auth/form-confirmation";
