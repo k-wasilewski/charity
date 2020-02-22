@@ -15,21 +15,16 @@
 <body>
 <c:choose>
     <c:when test="${user.blocked==0}">
-        <jsp:include page="header-auth.jsp"/>
+        <jsp:include page="header-instit.jsp"/>
 
         <section id="help">
-            <h2>Twoje przekazane dary</h2>
+            <h2>Dary przekazane dla Twojej instytucji</h2>
 
             <!-- SLIDE 1 -->
             <div class="help--slides active" data-id="1">
-                <div style="text-align: center">
-                    <a href="/auth/donation"><button class="btn--small" style="display: inline-block">
-                        Przekaż nowy dar</button></a>
-                </div>
                 <ul class="help--slides-items">
                     <c:forEach items="${donations}" var="don" varStatus="status">
-                        ${don.id};
-                        <div style="font-size: x-large; font-weight: bold" class="title">${don.categories} dla Fundacji ${don.institution}</div>
+                        <div style="font-size: x-large; font-weight: bold" class="title">${don.categories}</div>
                         <div style="font-size: large" class="subtitle">${don.quantity} worków</div>
                         <br>
                         <div style="font-size: large" class="subtitle">Adres przekazania: </div>
@@ -53,8 +48,14 @@
                         <div style="font-size: large" class="subtitle">Data utworzenia wpisu: ${don.created}</div>
 
                         <div style="font-size: large" class="form-group form-group--buttons">
-                            <a href="/auth/donation?id=${don.id}"><button class="btn">Edytuj</button></a>
-                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/auth/donation/del?id=${don.id}"><button class="btn">Usuń</button></a>
+                            <c:choose>
+                                <c:when test="${don.pickedUp==0}">
+                                    <a onclick="return confirm('Czy na pewno chcesz zmienić status?')" href="/instit/donation/pickedupOn?id=${don.id}"><button class="btn">Oznacz jako odebrany</button></a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a onclick="return confirm('Czy na pewno chcesz zmienić status??')" href="/instit/donation/pickedupOff?id=${don.id}"><button class="btn">Oznacz jako nieodebrany</button></a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </c:forEach>
 

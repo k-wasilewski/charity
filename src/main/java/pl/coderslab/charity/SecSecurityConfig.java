@@ -21,8 +21,9 @@ public class SecSecurityConfig
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/auth/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/auth/**").hasAnyRole("USER", "ADMIN", "INSTITUTION")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/instit/**").hasAnyRole("INSTITUTION", "ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().loginPage("/login")

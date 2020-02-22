@@ -2,7 +2,9 @@ package pl.coderslab.charity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pl.coderslab.charity.repos.InstitutionRepository;
 import pl.coderslab.charity.security.User;
+import pl.coderslab.charity.security.UserRepository;
 import pl.coderslab.charity.security.UserService;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +13,8 @@ import javax.annotation.PostConstruct;
 class AppInitializator {
     @Autowired
     UserService userService;
+    @Autowired
+    InstitutionRepository institutionRepository;
 
     @PostConstruct
     private void init() {
@@ -23,5 +27,11 @@ class AppInitializator {
         admin2.setUsername("admin2@admin.pl");
         admin2.setPassword("admin");
         userService.saveAdmin(admin2);
+
+        User isntit = new User();
+        isntit.setUsername("dbamozdrowie@wp.pl");
+        isntit.setPassword("instit");
+        isntit.setInstitution(institutionRepository.findById(1));
+        userService.saveInstitution(isntit);
     }
 }

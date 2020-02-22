@@ -19,8 +19,7 @@
             <li class="logged-user">
                 Witaj ${username}
                 <ul class="dropdown">
-                    <li><a href="#">Zmień hasło</a></li>
-                    <li><a href="#">Moje zbiórki</a></li>
+                    <li><a href="/auth/changePwd">Zmień hasło</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
             </li>

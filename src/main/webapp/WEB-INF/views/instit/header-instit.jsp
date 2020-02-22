@@ -27,16 +27,14 @@
 
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
-            <li><a href="/admin/institutions" class="btn btn--without-border">Fundacje</a></li>
-            <li><a href="/admin/admins" class="btn btn--without-border">Administratorzy</a></li>
-            <li><a href="/admin/users" class="btn btn--without-border">Użytkownicy</a></li>
+            <li><a href="/instit/donations" class="btn btn--without-border">Moje dary</a></li>
             <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
 
     <div class="slogan container container--90">
         <h2>
-            Panel administratora
+            Panel instytucji
         </h2>
     </div>
 

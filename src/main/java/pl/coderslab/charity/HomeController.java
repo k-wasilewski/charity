@@ -43,6 +43,8 @@ private UserRepository userRepository;
         }
         if (roles.contains("ROLE_ADMIN")) {
             return "admin/admin";
+        } else if (roles.contains("ROLE_INSTITUTION")) {
+            return "instit/instit";
         }
         return "index";
     }

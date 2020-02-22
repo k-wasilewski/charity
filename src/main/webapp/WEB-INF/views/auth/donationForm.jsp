@@ -224,7 +224,7 @@
         </section>
     </c:when>
     <c:otherwise>
-        <jsp:include page="header-blocked.jsp"/>
+        <jsp:include page="../header-blocked.jsp"/>
     </c:otherwise>
 </c:choose>
 

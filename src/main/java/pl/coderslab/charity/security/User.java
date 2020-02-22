@@ -2,6 +2,7 @@ package pl.coderslab.charity.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.coderslab.charity.repos.Institution;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -21,6 +22,8 @@ public class User implements UserDetails {
     @Column(name = "blocked", nullable = false, columnDefinition = "int default 0")
     private int blocked;
     private String token;
+    @OneToOne
+    private Institution institution;
 
     public User() {
         super();
@@ -107,5 +110,13 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         if (this.blocked==0) return true;
         else return false;
+    }
+
+    public Institution getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(Institution institution) {
+        this.institution = institution;
     }
 }

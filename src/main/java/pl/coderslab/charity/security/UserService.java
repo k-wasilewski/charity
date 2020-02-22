@@ -19,4 +19,6 @@ public interface UserService {
     void createVerificationToken(User user, String token);
 
     void activateUser(User user);
+
+    void saveInstitution(User user);
 }
