@@ -15,21 +15,21 @@
 <jsp:include page="headerSmall.jsp"/>
 
 <section class="login-page">
-    <h2>Zmień hasło</h2>
+    <h2><spring:message code="changePwd" text="default"/></h2>
     <form method="post" action="/changePassword">
         <div class="form-group">
             <input hidden type="email" name="username" value="${username}" />
         </div>
         <div class="form-group">
-            <input type="password" name="password" placeholder="Nowe hasło" />
+            <input type="password" name="password" placeholder="<spring:message code="newPwd1" text="default"/>" />
         </div>
         <div class="form-group">
-            <input type="password" name="password2" placeholder="Powtórz nowe hasło" />
+            <input type="password" name="password2" placeholder="<spring:message code="newPwd2" text="default"/>" />
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="/login" class="btn btn--without-border">Zaloguj się</a>
-            <button class="btn" type="submit">Zmień hasło</button>
+            <a href="/login" class="btn btn--without-border"><spring:message code="login" text="default"/></a>
+            <button class="btn" type="submit"><spring:message code="changePwd" text="default"/></button>
         </div>
     </form>
 </section>

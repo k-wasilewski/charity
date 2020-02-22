@@ -17,14 +17,14 @@
 <section class="login-page">
     <c:choose>
         <c:when test="${add==true}">
-            <h2>Dodaj administratora</h2>
+            <h2><spring:message code="addAdmin" text="default"/></h2>
         </c:when>
         <c:otherwise>
-            <h2>Edytuj administratora</h2>
+            <h2><spring:message code="editAdmin" text="default"/></h2>
         </c:otherwise>
     </c:choose>
     <c:if test="${msg==true}">
-        <h3><p style="color: red">Hasła muszą się zgadzać</p></h3>
+        <h3><p style="color: red"><spring:message code="pwdNotMatch" text="default"/></p></h3>
     </c:if>
     <form method="post" action="/admin/admins/edit">
         <div class="form-group">
@@ -38,10 +38,10 @@
             </c:choose>
         </div>
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło" />
+            <input type="password" name="password" placeholder="<spring:message code="password" text="default"/>" />
         </div>
         <div class="form-group">
-            <input type="password" name="password2" placeholder="Powtórz hasło" />
+            <input type="password" name="password2" placeholder="<spring:message code="password" text="default"/>" />
         </div>
         <input hidden type="number" name="id" value="${admin.id}">
 
@@ -49,10 +49,10 @@
                 <button class="btn" type="submit">
                     <c:choose>
                         <c:when test="${add==true}">
-                            Dodaj
+                            <spring:message code="add" text="default"/>
                         </c:when>
                         <c:otherwise>
-                            Edytuj
+                            <spring:message code="edit" text="default"/>
                         </c:otherwise>
                     </c:choose>
                 </button>

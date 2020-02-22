@@ -17,11 +17,11 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj ${username}
+                <spring:message code="greeting" text="default"/> ${username}
                 <ul class="dropdown">
-                    <li><a href="/auth/changePwd">Zmień hasło</a></li>
-                    <li><a href="/auth/all-donations">Moje zbiórki</a></li>
-                    <li><a href="/logout">Wyloguj</a></li>
+                    <li><a href="/auth/changePwd"><spring:message code="changePwd" text="default"/></a></li>
+                    <li><a href="/auth/all-donations"><spring:message code="myDonations" text="default"/></a></li>
+                    <li><a href="/logout"><spring:message code="logout" text="default"/></a></li>
                 </ul>
             </li>
         </ul>
@@ -29,19 +29,18 @@
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <c:if test="${username!=null}">
-                <li><a href="/auth/donation" class="btn btn--without-border">Przekaż dary</a></li>
+                <li><a href="/auth/donation" class="btn btn--without-border"><spring:message code="passThings" text="default"/></a></li>
             </c:if>
-            <li><a href="/#steps" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="/#about-us" class="btn btn--without-border">O nas</a></li>
-            <li><a href="/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="/#steps" class="btn btn--without-border"><spring:message code="steps" text="default"/></a></li>
+            <li><a href="/#about-us" class="btn btn--without-border"><spring:message code="about" text="default"/></a></li>
+            <li><a href="/#help" class="btn btn--without-border"><spring:message code="institutions" text="default"/></a></li>
+            <li><a href="/#contact" class="btn btn--without-border"><spring:message code="contact" text="default"/></a></li>
         </ul>
     </nav>
 
     <div class="slogan container container--90">
         <h2>
-            Dziękujemy za przesłanie formularza. Na maila prześlemy wszelkie
-            informacje o odbiorze.
+            <spring:message code="donationConfirm" text="default"/>
         </h2>
     </div>
 </header>

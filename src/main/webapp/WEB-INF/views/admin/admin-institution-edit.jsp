@@ -17,10 +17,10 @@
 <section class="login-page">
     <c:choose>
         <c:when test="${add==true}">
-            <h2>Dodaj fundację</h2>
+            <h2><spring:message code="addInstit" text="default"/></h2>
         </c:when>
         <c:otherwise>
-            <h2>Edytuj fundację</h2>
+            <h2><spring:message code="editInstit" text="default"/></h2>
         </c:otherwise>
     </c:choose>
         <form:form modelAttribute="inst" action="/admin/instututions/edit" method="post">
@@ -39,10 +39,10 @@
                 <button class="btn" type="submit">
                     <c:choose>
                         <c:when test="${add==true}">
-                            Dodaj
+                            <spring:message code="add" text="default"/>
                         </c:when>
                         <c:otherwise>
-                            Edytuj
+                            <spring:message code="edit" text="default"/>
                         </c:otherwise>
                     </c:choose>
                 </button>

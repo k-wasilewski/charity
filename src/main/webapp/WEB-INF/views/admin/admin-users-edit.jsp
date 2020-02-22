@@ -17,17 +17,17 @@
 <section class="login-page">
     <c:choose>
         <c:when test="${add==true}">
-            <h2>Dodaj użytkownika</h2>
+            <h2><spring:message code="addUser" text="default"/></h2>
         </c:when>
         <c:otherwise>
-            <h2>Edytuj użytkownika</h2>
+            <h2><spring:message code="editUser" text="default"/></h2>
         </c:otherwise>
     </c:choose>
     <c:if test="${msg==true}">
-        <h3><p style="color: red">Hasła muszą się zgadzać</p></h3>
+        <h3><p style="color: red"><spring:message code="pwdNotMatch" text="default"/></p></h3>
     </c:if>
     <c:if test="${msg2==true}">
-        <h3><p style="color: red">Użytkownik o takim emailu już istnieje</p></h3>
+        <h3><p style="color: red"><spring:message code="usrExists" text="default"/></p></h3>
     </c:if>
     <form method="post" action="/admin/users/edit">
         <div class="form-group">
@@ -41,10 +41,10 @@
             </c:choose>
         </div>
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło" />
+            <input type="password" name="password" placeholder="<spring:message code="password" text="default"/>" />
         </div>
         <div class="form-group">
-            <input type="password" name="password2" placeholder="Powtórz hasło" />
+            <input type="password" name="password2" placeholder="<spring:message code="password2" text="default"/>" />
         </div>
         <input hidden type="number" name="id" value="${user.id}">
 
@@ -52,10 +52,10 @@
                 <button class="btn" type="submit">
                     <c:choose>
                         <c:when test="${add==true}">
-                            Dodaj
+                            <spring:message code="add" text="default"/>
                         </c:when>
                         <c:otherwise>
-                            Edytuj
+                            <spring:message code="edit" text="default"/>
                         </c:otherwise>
                     </c:choose>
                 </button>

@@ -17,20 +17,20 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj ${username}
+                <spring:message code="greeting" text="default"/> ${username}
                 <ul class="dropdown">
-                    <li><a href="/auth/changePwd">Zmień hasło</a></li>
-                    <li><a href="/logout">Wyloguj</a></li>
+                    <li><a href="/auth/changePwd"><spring:message code="changePwd" text="default"/></a></li>
+                    <li><a href="/logout"><spring:message code="logout" text="default"/></a></li>
                 </ul>
             </li>
         </ul>
 
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
-            <li><a href="/admin/institutions" class="btn btn--without-border">Fundacje</a></li>
-            <li><a href="/admin/admins" class="btn btn--without-border">Administratorzy</a></li>
-            <li><a href="/admin/users" class="btn btn--without-border">Użytkownicy</a></li>
-            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="/admin/institutions" class="btn btn--without-border"><spring:message code="institutions" text="default"/></a></li>
+            <li><a href="/admin/admins" class="btn btn--without-border"><spring:message code="admins" text="default"/></a></li>
+            <li><a href="/admin/users" class="btn btn--without-border"><spring:message code="users" text="default"/></a></li>
+            <li><a href="/#contact" class="btn btn--without-border"><spring:message code="contact" text="default"/></a></li>
         </ul>
     </nav>
 
@@ -38,7 +38,7 @@
         <div class="slogan--item">
             <h1>
                 <c:if test="${msg==true}">
-                <p style="color: red">Nie możesz usunąć sam siebie</p>
+                <p style="color: red"><spring:message code="cantDelYourself" text="default"/></p>
                 </c:if>
             </h1>
         </div>

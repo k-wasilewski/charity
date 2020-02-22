@@ -16,13 +16,13 @@
 <jsp:include page="header-admin-regular.jsp"/>
 
 <section id="help">
-    <h2>Lista administratorów w bazie danych</h2>
+    <h2><spring:message code="adminList" text="default"/></h2>
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
         <div style="text-align: center">
             <a href="/admin/admins/add"><button class="btn--small" style="display: inline-block">
-                Dodaj administratora</button></a>
+                <spring:message code="addAdmin" text="default"/></button></a>
         </div>
         <ul class="help--slides-items">
             <c:forEach items="${admins}" var="admin" varStatus="status">
@@ -33,8 +33,8 @@
                     <div class="col">
                         <div class="title">${admin.username}</div>
                         <div class="form-group form-group--buttons">
-                            <a href="/admin/admins/edit?id=${admin.id}"><button class="btn">Edytuj</button></a>
-                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/admins/del?id=${admin.id}"><button class="btn">Usuń</button></a>
+                            <a href="/admin/admins/edit?id=${admin.id}"><button class="btn"><spring:message code="edit" text="default"/></button></a>
+                            <a onclick="return confirm('<spring:message code="usure" text="default"/>')" href="/admin/admins/del?id=${admin.id}"><button class="btn"><spring:message code="del" text="default"/></button></a>
                         </div>
                     </div>
                     </li>
@@ -45,8 +45,8 @@
                     <div class="col">
                         <div class="title">${admin.username}</div>
                         <div class="form-group form-group--buttons">
-                            <a href="/admin/admins/edit?id=${admin.id}"><button class="btn">Edytuj</button></a>
-                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/admin/admins/del?id=${admin.id}"><button class="btn">Usuń</button></a>
+                            <a href="/admin/admins/edit?id=${admin.id}"><button class="btn"><spring:message code="edit" text="default"/></button></a>
+                            <a onclick="return confirm('<spring:message code="usure" text="default"/>')" href="/admin/admins/del?id=${admin.id}"><button class="btn"><spring:message code="del" text="default"/></button></a>
                         </div>
                     </div>
                     <c:if test="<%=status.isLast()%>"></li></c:if>

@@ -15,15 +15,15 @@
 <jsp:include page="headerSmall.jsp"/>
 
 <section class="login-page">
-    <h2>Przypomnij hasło</h2>
+    <h2><spring:message code="remindMe" text="default"/></h2>
     <form action="/forgotten" method="post">
         <div class="form-group">
             <input type="email" name="email" placeholder="Email" />
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="/register" class="btn btn--without-border">Załóż konto</a>
-            <button class="btn" type="submit">Wyślij mi wiadomość</button>
+            <a href="/register" class="btn btn--without-border"><spring:message code="newAcc" text="default"/></a>
+            <button class="btn" type="submit"><spring:message code="sendMe" text="default"/></button>
         </div>
     </form>
 </section>

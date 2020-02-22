@@ -6,12 +6,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
+import org.springframework.web.servlet.support.RequestContext;
 import pl.coderslab.charity.security.UserRepository;
 import pl.coderslab.charity.repos.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller
@@ -24,7 +29,8 @@ private DonationRepository donationRepository;
 private UserRepository userRepository;
 
     @RequestMapping("/")
-    public String homeAction(Model model, Principal principal, Authentication authentication){
+    public String homeAction(WebRequest request, Model model, Principal principal, Authentication authentication,
+                             HttpServletRequest servletRequest, Locale locale){
         List<String> roles = new ArrayList<>();
         if (authentication!=null && authentication.getAuthorities()!=null) {
             for (GrantedAuthority i : authentication.getAuthorities()) {

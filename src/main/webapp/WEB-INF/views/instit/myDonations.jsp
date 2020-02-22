@@ -18,42 +18,42 @@
         <jsp:include page="header-instit.jsp"/>
 
         <section id="help">
-            <h2>Dary przekazane dla Twojej instytucji</h2>
+            <h2><spring:message code="donationsForInstit" text="default"/></h2>
 
             <!-- SLIDE 1 -->
             <div class="help--slides active" data-id="1">
                 <ul class="help--slides-items">
                     <c:forEach items="${donations}" var="don" varStatus="status">
                         <div style="font-size: x-large; font-weight: bold" class="title">${don.categories}</div>
-                        <div style="font-size: large" class="subtitle">${don.quantity} worków</div>
+                        <div style="font-size: large" class="subtitle">${don.quantity} <spring:message code="bags" text="default"/></div>
                         <br>
-                        <div style="font-size: large" class="subtitle">Adres przekazania: </div>
+                        <div style="font-size: large" class="subtitle"><spring:message code="institAddress" text="default"/> </div>
                         <div style="font-size: large" class="subtitle">${don.street}</div>
                         <div style="font-size: large" class="subtitle">${don.zipCode}, ${don.city}</div>
                         <br>
-                        <div style="font-size: large" class="subtitle">Termin przekazania:</div>
+                        <div style="font-size: large" class="subtitle"><spring:message code="institDatetime" text="default"/></div>
                         <div style="font-size: large" class="subtitle">${don.pickUpTime}, ${don.pickUpDate}</div>
                         <br>
                         <div style="font-size: large" class="subtitle">${don.pickUpComment}</div>
                         <br>
                         <c:choose>
                             <c:when test="${don.pickedUp==1}">
-                                <div style="font-size: large" class="subtitle">Dar został odebrany</div>
+                                <div style="font-size: large" class="subtitle"><spring:message code="pickedupOn" text="default"/></div>
                             </c:when>
                             <c:otherwise>
-                                <div style="font-size: large" class="subtitle">Dar nie został jeszcze odebrany</div>
+                                <div style="font-size: large" class="subtitle"><spring:message code="pickedupOff" text="default"/></div>
                             </c:otherwise>
                         </c:choose>
                         <br>
-                        <div style="font-size: large" class="subtitle">Data utworzenia wpisu: ${don.created}</div>
+                        <div style="font-size: large" class="subtitle"><spring:message code="created" text="default"/> ${don.created}</div>
 
                         <div style="font-size: large" class="form-group form-group--buttons">
                             <c:choose>
                                 <c:when test="${don.pickedUp==0}">
-                                    <a onclick="return confirm('Czy na pewno chcesz zmienić status?')" href="/instit/donation/pickedupOn?id=${don.id}"><button class="btn">Oznacz jako odebrany</button></a>
+                                    <a onclick="return confirm('<spring:message code="statusConfirm" text="default"/>')" href="/instit/donation/pickedupOn?id=${don.id}"><button class="btn"><spring:message code="pickedOn" text="default"/></button></a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a onclick="return confirm('Czy na pewno chcesz zmienić status??')" href="/instit/donation/pickedupOff?id=${don.id}"><button class="btn">Oznacz jako nieodebrany</button></a>
+                                    <a onclick="return confirm('<spring:message code="statusConfirm" text="default"/>')" href="/instit/donation/pickedupOff?id=${don.id}"><button class="btn"><spring:message code="pickedOff" text="default"/></button></a>
                                 </c:otherwise>
                             </c:choose>
                         </div>

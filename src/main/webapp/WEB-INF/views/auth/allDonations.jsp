@@ -18,21 +18,21 @@
         <jsp:include page="header-auth.jsp"/>
 
         <section id="help">
-            <h2>Twoje przekazane dary</h2>
+            <h2><spring:message code="userDonations" text="default"/></h2>
 
             <!-- SLIDE 1 -->
             <div class="help--slides active" data-id="1">
                 <div style="text-align: center">
                     <a href="/auth/donation"><button class="btn--small" style="display: inline-block">
-                        Przekaż nowy dar</button></a>
+                        <spring:message code="passDonation" text="default"/></button></a>
                 </div>
                 <ul class="help--slides-items">
                     <c:forEach items="${donations}" var="don" varStatus="status">
                         ${don.id};
-                        <div style="font-size: x-large; font-weight: bold" class="title">${don.categories} dla Fundacji ${don.institution}</div>
-                        <div style="font-size: large" class="subtitle">${don.quantity} worków</div>
+                        <div style="font-size: x-large; font-weight: bold" class="title">${don.categories} <spring:message code="toInstit" text="default"/> ${don.institution}</div>
+                        <div style="font-size: large" class="subtitle">${don.quantity} <spring:message code="bags" text="default"/></div>
                         <br>
-                        <div style="font-size: large" class="subtitle">Adres przekazania: </div>
+                        <div style="font-size: large" class="subtitle"><spring:message code="passAddress" text="default"/> </div>
                         <div style="font-size: large" class="subtitle">${don.street}</div>
                         <div style="font-size: large" class="subtitle">${don.zipCode}, ${don.city}</div>
                         <br>
@@ -43,22 +43,23 @@
                         <br>
                         <c:choose>
                             <c:when test="${don.pickedUp==1}">
-                                <div style="font-size: large" class="subtitle">Dar został odebrany</div>
+                                <div style="font-size: large" class="subtitle"><spring:message code="pickedupOn" text="default"/></div>
                             </c:when>
                             <c:otherwise>
-                                <div style="font-size: large" class="subtitle">Dar nie został jeszcze odebrany</div>
+                                <div style="font-size: large" class="subtitle"><spring:message code="pickedupOff" text="default"/></div>
                             </c:otherwise>
                         </c:choose>
                         <br>
-                        <div style="font-size: large" class="subtitle">Data utworzenia wpisu: ${don.created}</div>
+                        <div style="font-size: large" class="subtitle"><spring:message code="created" text="default"/> ${don.created}</div>
 
                         <div style="font-size: large" class="form-group form-group--buttons">
-                            <a href="/auth/donation?id=${don.id}"><button class="btn">Edytuj</button></a>
-                            <a onclick="return confirm('Czy na pewno chcesz usunąć?')" href="/auth/donation/del?id=${don.id}"><button class="btn">Usuń</button></a>
+                            <a href="/auth/donation?id=${don.id}"><button class="btn"><spring:message code="edit" text="default"/></button></a>
+                            <a onclick="return confirm('<spring:message code="usure" text="default"/>')" href="/auth/donation/del?id=${don.id}"><button class="btn"><spring:message code="del" text="default"/></button></a>
                         </div>
                     </c:forEach>
 
                 </ul>
+            </div>
 
         </section>
 

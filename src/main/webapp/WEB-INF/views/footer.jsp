@@ -15,21 +15,21 @@
 <body>
 <footer>
     <div id="contact">
-        <h2>Skontaktuj się z nami</h2>
-        <h3>Formularz kontaktowy</h3>
+        <h2><spring:message code="contactUs" text="default"/></h2>
+        <h3><spring:message code="contactForm" text="default"/></h3>
         <form class="form--contact">
-            <div class="form-group form-group--50"><input type="text" name="name" placeholder="Imię"/></div>
-            <div class="form-group form-group--50"><input type="text" name="surname" placeholder="Nazwisko"/></div>
+            <div class="form-group form-group--50"><input type="text" name="name" placeholder="<spring:message code="name" text="default"/>"/></div>
+            <div class="form-group form-group--50"><input type="text" name="surname" placeholder="<spring:message code="surname" text="default"/>"/></div>
 
-            <div class="form-group"><textarea name="message" placeholder="Wiadomość" rows="1"></textarea></div>
+            <div class="form-group"><textarea name="message" placeholder="<spring:message code="msg" text="default"/>" rows="1"></textarea></div>
 
-            <button class="btn" type="submit">Wyślij</button>
+            <button class="btn" type="submit"><spring:message code="send" text="default"/></button>
         </form>
     </div>
     <div class="bottom-line">
         <span class="bottom-line--copy">Copyright &copy; 2018</span>
         <div class="bottom-line--icons">
-            <a href="#" class="btn btn--small"><img src="<c:url value="/resources/images/icon-facebook.svg"/>"/>ZZ</a> <a href="#"
+            <a href="#" class="btn btn--small"><img src="<c:url value="/resources/images/icon-facebook.svg"/>"/></a> <a href="#"
                                                                                             class="btn btn--small"><img
                 src="<c:url value="/resources/images/icon-instagram.svg"/>"/></a>
         </div>

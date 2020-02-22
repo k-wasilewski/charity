@@ -17,24 +17,24 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj ${username}
+                <spring:message code="greeting" text="default"/> ${username}
                 <ul class="dropdown">
-                    <li><a href="/auth/changePwd">Zmień hasło</a></li>
-                    <li><a href="/logout">Wyloguj</a></li>
+                    <li><a href="/auth/changePwd"><spring:message code="changePwd" text="default"/></a></li>
+                    <li><a href="/logout"><spring:message code="logout" text="default"/></a></li>
                 </ul>
             </li>
         </ul>
 
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
-            <li><a href="/instit/donations" class="btn btn--without-border">Moje dary</a></li>
-            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="/instit/donations" class="btn btn--without-border"><spring:message code="myThings" text="default"/></a></li>
+            <li><a href="/#contact" class="btn btn--without-border"><spring:message code="contact" text="default"/></a></li>
         </ul>
     </nav>
 
     <div class="slogan container container--90">
         <h2>
-            Panel instytucji
+            <spring:message code="institutionPanel" text="default"/>
         </h2>
     </div>
 

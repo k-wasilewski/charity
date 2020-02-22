@@ -14,51 +14,60 @@
 </head>
 <body>
 <header class="header--main-page">
+
+    <div class="dropdown">
+        <button class="dropbtn">
+            EN / PL
+        </button>
+            <div class="dropdown-content">
+                <a href="?lang=en">EN</a>
+                <a href="?lang=pl">PL</a>
+            </div>
+        </div>
+
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li><a href="/login" class="btn btn--small btn--without-border"><spring:message code="login" text="default"/></a></li>
+            <li><a href="/register" class="btn btn--small btn--highlighted"><spring:message code="register" text="default"/></a></li>
         </ul>
 
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
-            <li><a href="/#steps" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="/#about-us" class="btn btn--without-border">O nas</a></li>
-            <li><a href="/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="/#steps" class="btn btn--without-border"><spring:message code="steps" text="default"/></a></li>
+            <li><a href="/#about-us" class="btn btn--without-border"><spring:message code="about" text="default"/></a></li>
+            <li><a href="/#help" class="btn btn--without-border"><spring:message code="institutions" text="default"/></a></li>
+            <li><a href="/#contact" class="btn btn--without-border"><spring:message code="contact" text="default"/></a></li>
         </ul>
     </nav>
-
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
                 <c:if test="${msg==true}">
-                    <p style="color: red">Hasła muszą się zgadzać</p>
+                    <p style="color: red"><spring:message code="pwdNotMatch" text="default"/></p>
                 </c:if>
                 <c:if test="${msg2==true}">
-                    <p style="color: red">Użytkownik o takim emailu już istnieje</p>
+                    <p style="color: red"><spring:message code="usrExists" text="default"/></p>
                 </c:if>
                 <c:if test="${msg5==true}">
-                    <p style="color: red"> Rejestracja nieudana </p>
+                    <p style="color: red"> <spring:message code="registerFail" text="default"/> </p>
                 </c:if>
                 <c:if test="${msg6==true}">
-                    <p style="color: red"> Niepoprawny token aktywacyjny </p>
+                    <p style="color: red"> <spring:message code="invalidToken" text="default"/> </p>
                 </c:if>
                 <c:if test="${msg7==true}">
-                    <p style="color: red"> Token aktywacyjny przeterminowany </p>
+                    <p style="color: red"> <spring:message code="expiredToken" text="default"/> </p>
                 </c:if>
                 <c:if test="${msg8==true}">
-                    <p style="font-weight: bold"> Na Twój email wysłaliśmy link aktywacyjny, ważny przez godzinę </p>
+                    <p style="font-weight: bold"> <spring:message code="tokenConfirm" text="default"/> </p>
                 </c:if>
                 <c:if test="${msg9==true}">
-                    <p style="font-weight: bold"> Zmieniono hasło </p>
+                    <p style="font-weight: bold"> <spring:message code="changedPwd" text="default"/> </p>
                 </c:if>
                 <c:if test="${msg10==true}">
-                    <p style="color: red"> Hasło musi zawierać co najmniej jedną małą literę, jedną dużą literę,
-                        jedną cyfrę i jeden znak specjalny !@#$%^&* oraz mieć co najmniej 8 znaków </p>
+                    <p style="color: red"> <spring:message code="pwdInvalid" text="default"/> </p>
                 </c:if>
-                Zacznij pomagać!<br/>
-                Oddaj niechciane rzeczy w zaufane ręce
+                <spring:message code="greeting1" text="default"/><br/>
+                <spring:message code="greeting2" text="default"/>
             </h1>
         </div>
     </div>

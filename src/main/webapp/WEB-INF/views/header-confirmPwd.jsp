@@ -16,19 +16,21 @@
 <header class="header--form-page">
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li><a href="/login" class="btn btn--small btn--without-border"><spring:message code="login" text="default"/></a></li>
+            <li><a href="/register" class="btn btn--small btn--highlighted"><spring:message code="register" text="default"/></a></li>
         </ul>
 
         <ul>
-            <li><a href="/" class="btn btn--without-border active">Start</a></li>
-            <c:if test="${username!=null}">
-                <li><a href="/auth/donation" class="btn btn--without-border">Przekaż dary</a></li>
-            </c:if>
-            <li><a href="/#steps" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="/#about-us" class="btn btn--without-border">O nas</a></li>
-            <li><a href="/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+            <ul>
+                <li><a href="/" class="btn btn--without-border active">Start</a></li>
+                <c:if test="${username!=null}">
+                    <li><a href="/auth/donation" class="btn btn--without-border"><spring:message code="passThings" text="default"/></a></li>
+                </c:if>
+                <li><a href="/#steps" class="btn btn--without-border"><spring:message code="steps" text="default"/></a></li>
+                <li><a href="/#about-us" class="btn btn--without-border"><spring:message code="about" text="default"/></a></li>
+                <li><a href="/#help" class="btn btn--without-border"><spring:message code="institutions" text="default"/></a></li>
+                <li><a href="/#contact" class="btn btn--without-border"><spring:message code="contact" text="default"/></a></li>
+            </ul>
         </ul>
     </nav>
 
@@ -36,10 +38,10 @@
         <h2>
             <c:choose>
                 <c:when test="${msg==true}">
-                    <p style="color: red"> Nie ma takiego użytkownika w bazie. </p>
+                    <p style="color: red"> <spring:message code="noSuchUser" text="default"/> </p>
                 </c:when>
                 <c:otherwise>
-                    Na podanego maila wysłaliśmy Twoje nowe hasło.
+                    <spring:message code="newPwd" text="default"/>
                 </c:otherwise>
             </c:choose>
         </h2>

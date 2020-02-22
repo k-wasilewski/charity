@@ -17,23 +17,23 @@
         <jsp:include page="header-auth.jsp"/>
 
         <section class="login-page">
-        <h2>Zmień hasło</h2>
+        <h2><spring:message code="changePwd" text="default"/></h2>
         <form action="/auth/changePwd" method="post">
             <div class="form-group">
                 <input type="email" name="username" value="${username}" placeholder="Email" />
             </div>
             <div class="form-group">
-                <input type="password" name="old-pwd" placeholder="Stare hasło" />
+                <input type="password" name="old-pwd" placeholder="<spring:message code="oldPwd" text="default"/>" />
             </div>
             <div class="form-group">
-                <input type="password" name="new-pwd" placeholder="Nowe hasło" />
+                <input type="password" name="new-pwd" placeholder="<spring:message code="newPwd1" text="default"/>" />
             </div>
             <div class="form-group">
-                <input type="password" name="new-pwd2" placeholder="Powtórz nowe hasło" />
+                <input type="password" name="new-pwd2" placeholder="<spring:message code="newPwd2" text="default"/>" />
             </div>
 
             <div class="form-group form-group--buttons">
-                <button class="btn" type="submit">Zmień hasło</button>
+                <button class="btn" type="submit"><spring:message code="changePwd" text="default"/></button>
             </div>
         </form>
         </section>

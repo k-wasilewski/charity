@@ -30,16 +30,14 @@
         <div class="stats--item">
             <em>${donationsQuantities}</em>
 
-            <h3>Oddanych worków</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
-                tempora!</p>
+            <h3><spring:message code="quantityThings" text="default"/></h3>
+            <p><spring:message code="bagsMsg" text="default"/></p>
         </div>
 
         <div class="stats--item">
             <em>${donationsSum}</em>
-            <h3>Przekazanych darów</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
-                quam.</p>
+            <h3><spring:message code="quantityThings2" text="default"/></h3>
+            <p><spring:message code="thingsMsg" text="default"/></p>
         </div>
 
     </div>

@@ -18,8 +18,8 @@
     <h2>${user.username}</h2>
 
             <div class="form-group form-group--buttons">
-                <a href="/admin/users/edit?id=${user.id}"> <button class="btn">Zmień hasło</button></a>
-                <a href="/admin/users/block?id=${user.id}"><button class="btn">Zablokuj</button></a>
+                <a href="/admin/users/edit?id=${user.id}"> <button class="btn"><spring:message code="changePwd" text="default"/></button></a>
+                <a href="/admin/users/block?id=${user.id}"><button class="btn"><spring:message code="block" text="default"/></button></a>
             </div>
         </form>
 </section>

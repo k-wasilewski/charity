@@ -17,11 +17,11 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj ${username}
+                <spring:message code="greeting" text="default"/> ${username}
                 <ul class="dropdown">
-                    <li><a href="/auth/changePwd">Zmień hasło</a></li>
-                    <li><a href="/auth/all-donations">Moje zbiórki</a></li>
-                    <li><a href="/logout">Wyloguj</a></li>
+                    <li><a href="/auth/changePwd"><spring:message code="changePwd" text="default"/></a></li>
+                    <li><a href="/auth/all-donations"><spring:message code="myDonations" text="default"/></a></li>
+                    <li><a href="/logout"><spring:message code="logout" text="default"/></a></li>
                 </ul>
             </li>
         </ul>
@@ -29,29 +29,29 @@
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <c:if test="${username!=null}">
-                <li><a href="/auth/donation" class="btn btn--without-border">Przekaż dary</a></li>
+                <li><a href="/auth/donation" class="btn btn--without-border"><spring:message code="passThings" text="default"/></a></li>
             </c:if>
-            <li><a href="/#steps" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="/#about-us" class="btn btn--without-border">O nas</a></li>
-            <li><a href="/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="/#steps" class="btn btn--without-border"><spring:message code="steps" text="default"/></a></li>
+            <li><a href="/#about-us" class="btn btn--without-border"><spring:message code="about" text="default"/></a></li>
+            <li><a href="/#help" class="btn btn--without-border"><spring:message code="institutions" text="default"/></a></li>
+            <li><a href="/#contact" class="btn btn--without-border"><spring:message code="contact" text="default"/></a></li>
         </ul>
     </nav>
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
                 <c:if test="${msg2==true}">
-                    <p style="color: red">Hasło błędne</p>
+                    <p style="color: red"><spring:message code="pwdWrong" text="default"/></p>
                 </c:if>
                 <c:if test="${msg3==true}">
-                    <p style="color: red">Nie udało się zmienić hasła</p>
+                    <p style="color: red"><spring:message code="pwdChangeFailed" text="default"/></p>
                 </c:if>
                 <c:if test="${msg4==true}">
-                    <p style="font-weight: bold"> Hasło zmienione</p>
+                    <p style="font-weight: bold"> <spring:message code="pwdChangedSucc" text="default"/></p>
                 </c:if>
                 <br>
-                Zacznij pomagać!<br/>
-                Oddaj niechciane rzeczy w zaufane ręce
+                <spring:message code="greeting1" text="default"/><br/>
+                <spring:message code="greeting2" text="default"/>
             </h1>
         </div>
     </div>
