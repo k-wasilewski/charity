@@ -44,39 +44,38 @@
 </section>
 
 <section id="steps">
-    <h2>Wystarczą 4 proste kroki</h2>
+    <h2><spring:message code="4steps" text="default"/></h2>
 
     <div class="steps--container">
         <div class="steps--item">
             <span class="icon icon--hands"></span>
-            <h3>Wybierz rzeczy</h3>
-            <p>ubrania, zabawki, sprzęt i inne</p>
+            <h3><spring:message code="selThings" text="default"/></h3>
+            <p><spring:message code="things" text="default"/></p>
         </div>
         <div class="steps--item">
             <span class="icon icon--arrow"></span>
-            <h3>Spakuj je</h3>
-            <p>skorzystaj z worków na śmieci</p>
+            <h3><spring:message code="pack" text="default"/></h3>
+            <p><spring:message code="garbageBags" text="default"/></p>
         </div>
         <div class="steps--item">
             <span class="icon icon--glasses"></span>
-            <h3>Zdecyduj komu chcesz pomóc</h3>
-            <p>wybierz zaufane miejsce</p>
+            <h3><spring:message code="decide" text="default"/></h3>
+            <p><spring:message code="trusted" text="default"/></p>
         </div>
         <div class="steps--item">
             <span class="icon icon--courier"></span>
-            <h3>Zamów kuriera</h3>
-            <p>kurier przyjedzie w dogodnym terminie</p>
+            <h3><spring:message code="courier" text="default"/></h3>
+            <p><spring:message code="courierTime" text="default"/></p>
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="#" class="btn btn--large"><spring:message code="newAcc" text="default"/></a>
 </section>
 
 <section id="about-us">
     <div class="about-us--text">
-        <h2>O nas</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
-            optio esse quisquam illo omnis.</p>
+        <h2><spring:message code="about" text="default"/></h2>
+        <p><spring:message code="aboutMsg" text="default"/></p>
         <img src="<c:url value="/resources/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
     </div>
     <div class="about-us--image"><img src="<c:url value="/resources/images/about-us.jpg"/>" alt="People in circle"/>
