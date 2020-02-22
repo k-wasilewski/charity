@@ -83,12 +83,11 @@
 </section>
 
 <section id="help">
-    <h2>Komu pomagamy?</h2>
+    <h2><spring:message code="who" text="default"/></h2>
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
-        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
-            Możesz sprawdzić czym się zajmują.</p>
+        <p><spring:message code="whoDb" text="default"/></p>
 
         <ul class="help--slides-items">
             <c:forEach items="${institutions}" var="inst" varStatus="status">

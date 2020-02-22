@@ -33,5 +33,11 @@ class AppInitializator {
         isntit.setPassword("instit");
         isntit.setInstitution(institutionRepository.findById(1));
         userService.saveInstitution(isntit);
+
+        User user = new User();
+        user.setUsername("test@test.pl");
+        user.setPassword("test");
+        userService.saveUser(user);
+        userService.activateUser(user);
     }
 }
