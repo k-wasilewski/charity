@@ -15,6 +15,16 @@
 <body>
 <header class="header--main-page">
 
+    <div class="dropdown">
+        <button class="dropbtn">
+            <spring:message code="changeLang" text="default"/>
+        </button>
+        <div class="dropdown-content">
+            <a href="?lang=en">EN</a>
+            <a href="?lang=pl">PL</a>
+        </div>
+    </div>
+
     <nav class="container container--70">
         <ul class="nav--actions">
             <li><a href="/login" class="btn btn--small btn--without-border"><spring:message code="login" text="default"/></a></li>

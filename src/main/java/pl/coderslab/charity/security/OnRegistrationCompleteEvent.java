@@ -8,14 +8,16 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
     private String appUrl;
     private Locale locale;
     private User user;
+    private String lang;
 
     public OnRegistrationCompleteEvent(
-            User user, Locale locale, String appUrl) {
+            User user, Locale locale, String appUrl, String lang) {
         super(user);
 
         this.user = user;
         this.locale = locale;
         this.appUrl = appUrl;
+        this.lang = lang;
     }
 
     public String getAppUrl() {
@@ -40,5 +42,13 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 }

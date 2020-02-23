@@ -9,7 +9,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
-    @NotBlank(message = "Nazwa nie może być pusta")
+    @NotBlank
     private String name;
 
     public Integer getId() {

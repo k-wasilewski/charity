@@ -39,7 +39,12 @@ public class RegisterController {
     public String doRegister(Model model, @RequestParam("username") String username,
                                  @RequestParam("password") String password,
                                  @RequestParam("password2") String password2,
-                                 WebRequest request) {
+                                 WebRequest request,
+                             @CookieValue(value = "org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE", required = false) String langCkie) {
+        String lang;
+        if (langCkie!=null && langCkie.equals("pl")) lang="pl";
+        else lang="en";
+
         if (!password.equals(password2)) {
             model.addAttribute("msg", true);
             return "index";
@@ -65,7 +70,7 @@ public class RegisterController {
                 try {
                     String appUrl = request.getContextPath();
                     eventPublisher.publishEvent(new OnRegistrationCompleteEvent
-                            (user, request.getLocale(), appUrl));
+                            (user, request.getLocale(), appUrl, lang));
                     model.addAttribute("msg8", true);
                 } catch (Exception me) {
                     model.addAttribute("msg5", true);

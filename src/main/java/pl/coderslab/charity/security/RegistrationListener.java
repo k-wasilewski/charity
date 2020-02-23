@@ -31,10 +31,14 @@ public class RegistrationListener implements
         service.createVerificationToken(user, token);
 
         String recipientAddress = user.getUsername();
-        String subject = "\"Oddam w dobre ręce\" - Twój link aktywacyjny";
+        String subject = "\"Pass in good hands\" - your activation link";
+        String message = "\"Pass in good hands\" - this is your activation link: ";
+        if (event.getLang().equals("pl")) {
+            subject = "\"Oddam w dobre ręce\" - Twój link aktywacyjny";
+            message = "\"Oddam w dobre ręce\" - oto Twój link aktywacyjny: ";
+        }
         String confirmationUrl
                 = event.getAppUrl() + "/regitrationConfirm?token=" + token;
-        String message = "\"Oddam w dobre ręce\" - oto Twój link aktywacyjny: ";
         String actualMessage = message + "http://localhost:8081" + confirmationUrl;
 
         emailService.sendSimpleMessage(recipientAddress, subject, actualMessage);

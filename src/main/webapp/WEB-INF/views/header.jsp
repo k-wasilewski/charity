@@ -17,7 +17,7 @@
 
     <div class="dropdown">
         <button class="dropbtn">
-            EN / PL
+            <spring:message code="changeLang" text="default"/>
         </button>
             <div class="dropdown-content">
                 <a href="?lang=en">EN</a>
@@ -39,6 +39,7 @@
             <li><a href="/#contact" class="btn btn--without-border"><spring:message code="contact" text="default"/></a></li>
         </ul>
     </nav>
+    <div style="height: 20px"></div>
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
@@ -64,7 +65,7 @@
                     <p style="font-weight: bold"> <spring:message code="changedPwd" text="default"/> </p>
                 </c:if>
                 <c:if test="${msg10==true}">
-                    <p style="color: red"> <spring:message code="pwdInvalid" text="default"/> </p>
+                    <p style="color: red; font-size: 18px"> <spring:message code="pwdInvalid" text="default"/> </p>
                 </c:if>
                 <spring:message code="greeting1" text="default"/><br/>
                 <spring:message code="greeting2" text="default"/>
