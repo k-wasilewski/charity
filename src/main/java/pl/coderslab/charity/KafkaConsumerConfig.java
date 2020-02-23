@@ -47,15 +47,5 @@ public class KafkaConsumerConfig {
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
-
-    @KafkaListener(topics = "user-to-inst", groupId = "group-id")
-    public void listenUserToInst(String message) {
-        System.out.println("Received message in group group-id: " + message);
-    }
-
-    @KafkaListener(topics = "inst-to-user", groupId = "group-id")
-    public void listenInstToUser(String message) {
-        System.out.println("Received message in group group-id: " + message);
-    }
 }
 

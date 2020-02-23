@@ -42,7 +42,7 @@ class AppInitializator {
         userService.saveUser(user);
         userService.activateUser(user);
 
-        kafkaProducerConfig.sendMessageInstToUser("siemanko od instytucji do usera");
-        kafkaProducerConfig.sendMessageUserToInst("siemanko od usera do instytucji");
+        //kafkaProducerConfig.sendMessageInstToUser("siemanko od instytucji do usera");
+        //kafkaProducerConfig.sendMessageUserToInst("siemanko od usera do instytucji");
     }
 }

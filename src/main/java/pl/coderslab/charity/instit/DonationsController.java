@@ -1,10 +1,14 @@
 package pl.coderslab.charity.instit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.coderslab.charity.KafkaConsumerConfig;
+import pl.coderslab.charity.KafkaProducerConfig;
 import pl.coderslab.charity.repos.Donation;
 import pl.coderslab.charity.repos.DonationRepository;
 import pl.coderslab.charity.security.User;
@@ -20,7 +24,14 @@ public class DonationsController {
     private DonationRepository donationRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private KafkaProducerConfig kafkaProducerConfig;
 
+    @KafkaListener(topics = "user-to-inst", groupId = "group-id")
+    public void listenUserToInst(String message, Model model) {
+        System.out.println("Received message at institution: " + message);
+        model.addAttribute("kafka-msg", message);
+    }
 
     @GetMapping("/instit/donations")
     public String myDonations(Model model, Principal principal) {
@@ -53,16 +64,25 @@ public class DonationsController {
     }
 
     @GetMapping("/instit/donation/pickedupOn")
-    public String pickedupOn(Model model, Principal principal, @RequestParam("id") int id) {
+    public String pickedupOn(Model model, Principal principal, @RequestParam("id") int id,
+                             @CookieValue(value = "org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE", required = false) String langCkie) {
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
         } else {
             model.addAttribute("username", null);
         }
 
-        Donation don = donationRepository.getOne(id);
-        don.setPickedUp(1);
-        donationRepository.save(don);
+        Donation donation = donationRepository.getOne(id);
+        donation.setPickedUp(1);
+        donationRepository.save(donation);
+
+        if (langCkie.equals("pl")) {
+            kafkaProducerConfig.sendMessageInstToUser("Instytucja " + principal.getName() + "odebrała " +
+                    donation.getQuantity()+" worków, a w nich "+donation.getCategories());
+        } else {
+            kafkaProducerConfig.sendMessageUserToInst("There has been donated " +
+                    ""+donation.getQuantity()+" bags of "+donation.getCategories() + " for your institution");
+        }
 
         User user = userRepository.findByUsername(principal.getName());
         model.addAttribute("user", user);

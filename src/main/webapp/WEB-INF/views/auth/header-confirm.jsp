@@ -25,6 +25,8 @@
         </div>
     </div>
 
+    ${kafka-msg}
+
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
