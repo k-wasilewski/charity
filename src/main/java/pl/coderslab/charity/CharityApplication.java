@@ -17,7 +17,7 @@ import pl.coderslab.charity.security.RegistrationListener;
 import java.util.Locale;
 
 @SpringBootApplication
-public class CharityApplication implements WebMvcConfigurer {
+public class CharityApplication implements WebMvcConfigurer  {
 
     public static void main(String[] args) {
         SpringApplication.run(CharityApplication.class, args);

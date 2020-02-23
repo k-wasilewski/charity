@@ -15,6 +15,8 @@ class AppInitializator {
     UserService userService;
     @Autowired
     InstitutionRepository institutionRepository;
+    @Autowired
+    KafkaProducerConfig kafkaProducerConfig;
 
     @PostConstruct
     private void init() {
@@ -39,5 +41,7 @@ class AppInitializator {
         user.setPassword("test");
         userService.saveUser(user);
         userService.activateUser(user);
+
+        kafkaProducerConfig.sendMessage("siemanko");
     }
 }

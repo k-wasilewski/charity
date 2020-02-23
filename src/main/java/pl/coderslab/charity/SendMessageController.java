@@ -1,4 +1,4 @@
-package pl.coderslab.charity.security;
+package pl.coderslab.charity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
