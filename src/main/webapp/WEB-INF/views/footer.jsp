@@ -17,7 +17,7 @@
     <div id="contact">
         <h2><spring:message code="contactUs" text="default"/></h2>
         <h3><spring:message code="contactForm" text="default"/></h3>
-        <form class="form--contact">
+        <form class="form--contact" action="/msg" method="post">
             <div class="form-group form-group--50"><input type="text" name="name" placeholder="<spring:message code="name" text="default"/>"/></div>
             <div class="form-group form-group--50"><input type="text" name="surname" placeholder="<spring:message code="surname" text="default"/>"/></div>
 

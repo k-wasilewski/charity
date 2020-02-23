@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large"><spring:message code="newAcc" text="default"/></a>
+    <a href="/register" class="btn btn--large"><spring:message code="newAcc" text="default"/></a>
 </section>
 
 <section id="about-us">
