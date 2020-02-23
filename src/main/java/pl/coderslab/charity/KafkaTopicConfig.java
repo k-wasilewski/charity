@@ -25,6 +25,11 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic topic1() {
-        return new NewTopic("custom-charity-topic", 1, (short) 1);
+        return new NewTopic("user-to-inst", 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic topic2() {
+        return new NewTopic("inst-to-user", 1, (short) 1);
     }
 }
