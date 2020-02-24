@@ -119,4 +119,6 @@ public class User implements UserDetails {
     public void setInstitution(Institution institution) {
         this.institution = institution;
     }
+
+    public String toString() { return this.username; }
 }

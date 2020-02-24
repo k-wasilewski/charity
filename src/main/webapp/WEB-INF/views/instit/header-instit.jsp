@@ -25,8 +25,6 @@
         </div>
     </div>
 
-    ${kafka-msg}
-
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
@@ -37,6 +35,13 @@
                 </ul>
             </li>
         </ul>
+
+        <div style="font-size: 14px; color: rebeccapurple; visibility: hidden" id="msgUserToInstit">
+            <span style="font-size: 16px; font-weight: bold"><spring:message code="lastMsg" text="default"/>
+            </span>: <spring:message code="msgUserI" text="default"/> <span id="msgUserI">
+            </span> <spring:message code="msgGaveI" text="default"/> <span id="msgInstitI"></span>
+            <span id="msgQuantI"></span> <spring:message code="msgBagsInThemI" text="default"/> <span id="msgThingsI"></span>
+        </div>
 
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
@@ -50,8 +55,9 @@
             <spring:message code="institutionPanel" text="default"/>
         </h2>
     </div>
-
 </header>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/resources/js/app.js"></script>
 </body>
 </html>

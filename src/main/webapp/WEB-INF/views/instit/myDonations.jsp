@@ -70,6 +70,8 @@
         <jsp:include page="../footer.jsp"/>
     </c:otherwise>
 </c:choose>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/resources/js/app.js"></script>
 </body>
 </html>

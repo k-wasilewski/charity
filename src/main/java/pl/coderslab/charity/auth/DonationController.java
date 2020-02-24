@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class DonationController {
@@ -31,11 +35,17 @@ public class DonationController {
     private UserRepository userRepository;
     @Autowired
     private KafkaProducerConfig kafkaProducerConfig;
+    private String msgsInstToUser = "";
 
     @KafkaListener(topics = "inst-to-user", groupId = "group-id")
-    public void listenInstToUser(String message, Model model) {
-        System.out.println("Received message at user: " + message);
-        model.addAttribute("kafka-msg", message);
+    public void listenInstToUser(String message) {
+        msgsInstToUser = message;
+    }
+
+    @GetMapping("auth/msg")
+    @ResponseBody
+    public String getMsg() {
+        return msgsInstToUser;
     }
 
     @GetMapping("/auth/donation")
@@ -63,8 +73,7 @@ public class DonationController {
 
     @PostMapping("/auth/donation")
     public String donationAction(@ModelAttribute("donation") @Valid Donation donation, BindingResult result,
-                                 Model model, HttpServletRequest req, Principal principal,
-                                 @CookieValue(value = "org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE", required = false) String langCkie) {
+                                 Model model, HttpServletRequest req, Principal principal) {
         if (result.hasErrors()) {
             System.out.println(result);
             model.addAttribute("categories", categoryRepository.findAll());
@@ -92,15 +101,10 @@ public class DonationController {
         donation.setCreated(LocalDate.now());
         donationRepository.save(donation);
 
-        if (langCkie.equals("pl")) {
-            kafkaProducerConfig.sendMessageUserToInst("Użytkownik " + principal.getName() + " przekazał " +
-                    "dla instytucji " + donation.getInstitution() + donation.getQuantity()+" " +
-                    "worków, a w nich "+donation.getCategories());
-        } else {
-            kafkaProducerConfig.sendMessageUserToInst("User " + principal.getName() + " has made a donation of" +
-                            donation.getQuantity() + " bags with " + donation.getCategories() +
-                    "for institution " + donation.getInstitution());
-        }
+        kafkaProducerConfig.sendMessageUserToInst("username:"+principal.getName() +
+                    ", institution:" + donation.getInstitution() + ", quantity:" + donation.getQuantity() +
+                    ", things:"+donation.getCategories());
+
 
         model.addAttribute("user", userRepository.findByUsername(principal.getName()));
         return "auth/form-confirmation";

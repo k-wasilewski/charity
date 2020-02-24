@@ -7,15 +7,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.charity.KafkaConsumerConfig;
 import pl.coderslab.charity.KafkaProducerConfig;
 import pl.coderslab.charity.repos.Donation;
 import pl.coderslab.charity.repos.DonationRepository;
+import pl.coderslab.charity.repos.InstitutionRepository;
 import pl.coderslab.charity.security.User;
 import pl.coderslab.charity.security.UserRepository;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Controller
@@ -25,12 +30,20 @@ public class DonationsController {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private InstitutionRepository institutionRepository;
+    @Autowired
     private KafkaProducerConfig kafkaProducerConfig;
+    private String msgsUserToInst="";
 
     @KafkaListener(topics = "user-to-inst", groupId = "group-id")
-    public void listenUserToInst(String message, Model model) {
-        System.out.println("Received message at institution: " + message);
-        model.addAttribute("kafka-msg", message);
+    public void listenUserToInst(String message) {
+        msgsUserToInst = message;
+    }
+
+    @GetMapping("instit/msg")
+    @ResponseBody
+    public String getMsg() {
+        return msgsUserToInst;
     }
 
     @GetMapping("/instit/donations")
@@ -64,8 +77,7 @@ public class DonationsController {
     }
 
     @GetMapping("/instit/donation/pickedupOn")
-    public String pickedupOn(Model model, Principal principal, @RequestParam("id") int id,
-                             @CookieValue(value = "org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE", required = false) String langCkie) {
+    public String pickedupOn(Model model, Principal principal, @RequestParam("id") int id) {
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
         } else {
@@ -76,13 +88,9 @@ public class DonationsController {
         donation.setPickedUp(1);
         donationRepository.save(donation);
 
-        if (langCkie.equals("pl")) {
-            kafkaProducerConfig.sendMessageInstToUser("Instytucja " + principal.getName() + "odebrała " +
-                    donation.getQuantity()+" worków, a w nich "+donation.getCategories());
-        } else {
-            kafkaProducerConfig.sendMessageUserToInst("There has been donated " +
-                    ""+donation.getQuantity()+" bags of "+donation.getCategories() + " for your institution");
-        }
+        kafkaProducerConfig.sendMessageInstToUser("institution:" + donation.getInstitution() + ", username: " +
+                donation.getOwner() + ", quantity:" + donation.getQuantity() +
+                ", things:"+donation.getCategories());
 
         User user = userRepository.findByUsername(principal.getName());
         model.addAttribute("user", user);

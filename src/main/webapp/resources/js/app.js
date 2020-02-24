@@ -1,6 +1,55 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   /**
+   * getting Kafka messages
+   */
+
+  var regexThings = /things:(\[.*?\])/;
+  var regexQuant = /quantity:(.*?),/;
+  var regexUser = /username:(.*?),/;
+  var regexInstit = /institution:(.*?),/;
+
+  var getMsgUserToInstit = function() {
+    $.ajax({
+      url: "http://localhost:8081/instit/msg",
+      type: "GET",
+      success: function (data) {
+        if (data!='') $('#msgUserToInstit').css('visibility', 'visible');
+        var thingsMatch = regexThings.exec(data);
+        var quantMatch = regexQuant.exec(data);
+        var userMatch = regexUser.exec(data);
+        var institMatch = regexInstit.exec(data);
+        $('#msgThingsI').text(thingsMatch[1]);
+        $('#msgQuantI').text(quantMatch[1]);
+        $('#msgUserI').text(userMatch[1]);
+        $('#msgInstitI').text(institMatch[1]);
+      }
+    });
+  };
+
+  setInterval(getMsgUserToInstit(), 500);
+
+  var getInstitToUser = function() {
+    $.ajax({
+      url: "http://localhost:8081/auth/msg",
+      type: "GET",
+      success: function (data) {
+        if (data!='') $('#msgInstitToUser').css('visibility', 'visible');
+        var thingsMatch = regexThings.exec(data);
+        var quantMatch = regexQuant.exec(data);
+        var userMatch = regexUser.exec(data);
+        var institMatch = regexInstit.exec(data);
+        $('#msgThingsU').text(thingsMatch[1]);
+        $('#msgQuantU').text(quantMatch[1]);
+        $('#msgUserU').text(userMatch[1]);
+        $('#msgInstitU').text(institMatch[1]);
+      }
+    });
+  };
+
+  setInterval(getInstitToUser(), 500);
+
+  /**
    * styling of Spring Form checkboxes
    */
   $('.springcheckbox').unbind('click').bind('click', function() {
