@@ -40,7 +40,7 @@
         <div style="font-size: 14px; color: rebeccapurple; visibility: hidden" id="msgInstitToUser">
             <span style="font-size: 16px; font-weight: bold"><spring:message code="lastMsg" text="default"/>
             </span>: <spring:message code="msgInstitU" text="default"/> <span id="msgInstitU">
-            </span> <spring:message code="msgReceivedU" text="default"/> <span id="msgUserU"></span>
+            /span> <spring:message code="msgReceivedU" text="default"/> <span id="msgUserU"></span>
             <span id="msgQuantU"></span> <spring:message code="msgBagsInThemI" text="default"/> <span id="msgThingsU"></span>
         </div>
 

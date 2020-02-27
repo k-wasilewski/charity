@@ -1,50 +1,40 @@
 version: "3"
 
-networks:
-  kafka-net:
-    driver: bridge
-
 services:
   charity:
     image: charity:latest
     ports:
-      - "8081:8081"
+      - 8081:8081
     depends_on:
       - db1
-      - kafka-server1
+      - kafka
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db1:3306/charity_donation?serverTimezone=UTC&useSSL=false&useUnicode=yes&characterEncoding=UTF-8
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
 
-  zookeeper-server:
-    image: 'bitnami/zookeeper:3.4.10'
-    networks:
-      - kafka-net
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
     ports:
-      - "2181:2181"
+      - 2181:2181
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
-  kafka-server1:
-    image: 'bitnami/kafka:0.11.0-1-r1'
-    networks:
-      - kafka-net    
+  kafka:
+    image: 'bitnami/kafka:latest'
     ports:
-      - "9092:9092"
+      - 9092:9092
     environment:
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper-server:2181
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
-      - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
+      - ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
       - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_PORT=9092
     depends_on:
-      - zookeeper-server
+      - zookeeper
 
   db1:
     image: mysql:5.7
-    container_name: db1
-    restart: always
-    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci --skip-character-set-client-handshake
     environment:
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root

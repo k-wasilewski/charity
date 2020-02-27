@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.KafkaProducerConfig;
+import pl.coderslab.charity.KafkaProducerConfig;
 import pl.coderslab.charity.security.UserRepository;
 import pl.coderslab.charity.repos.CategoryRepository;
 import pl.coderslab.charity.repos.Donation;

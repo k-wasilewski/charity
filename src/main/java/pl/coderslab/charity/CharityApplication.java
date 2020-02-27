@@ -3,16 +3,19 @@ package pl.coderslab.charity;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import pl.coderslab.charity.repos.OwnerConverter;
 
 import java.util.Locale;
 
 @SpringBootApplication
+@PropertySource(value = "classpath:application.properties")
 public class CharityApplication implements WebMvcConfigurer  {
 
     public static void main(String[] args) {

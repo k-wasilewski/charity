@@ -2,6 +2,7 @@ package pl.coderslab.charity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.WebApplicationInitializer;
 import pl.coderslab.charity.repos.InstitutionRepository;
 import pl.coderslab.charity.security.User;
 import pl.coderslab.charity.security.UserRepository;
@@ -15,8 +16,8 @@ class AppInitializator {
     UserService userService;
     @Autowired
     InstitutionRepository institutionRepository;
-    @Autowired
-    KafkaProducerConfig kafkaProducerConfig;
+    //@Autowired
+    //KafkaProducerConfig kafkaProducerConfig;
 
     @PostConstruct
     private void init() {
