@@ -209,7 +209,7 @@
                             </div>
                         </div>
 
-                        <form:hidden path="owner" value="${user.username}" />
+                        <form:hidden path="owner" value="${username}" />
 
                         <div class="form-group form-group--buttons">
                             <button type="button" class="btn prev-step"><spring:message code="back" text="default"/></button>
