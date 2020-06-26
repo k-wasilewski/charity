@@ -1,4 +1,4 @@
-package pl.coderslab.charity.admin;
+package pl.coderslab.charity.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +10,6 @@ import pl.coderslab.charity.repos.DonationRepository;
 import pl.coderslab.charity.repos.Institution;
 import pl.coderslab.charity.repos.InstitutionRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;

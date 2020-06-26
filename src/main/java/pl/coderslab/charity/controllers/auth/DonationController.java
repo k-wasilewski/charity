@@ -1,4 +1,4 @@
-package pl.coderslab.charity.auth;
+package pl.coderslab.charity.controllers.auth;
 
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.KafkaProducerConfig;
-import pl.coderslab.charity.KafkaProducerConfig;
+import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.security.UserRepository;
 import pl.coderslab.charity.repos.CategoryRepository;
 import pl.coderslab.charity.repos.Donation;
@@ -19,10 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Controller
 public class DonationController {

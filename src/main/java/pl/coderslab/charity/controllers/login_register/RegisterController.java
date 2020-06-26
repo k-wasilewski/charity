@@ -1,9 +1,8 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.controllers.login_register;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,6 @@ import pl.coderslab.charity.security.OnRegistrationCompleteEvent;
 import pl.coderslab.charity.security.User;
 import pl.coderslab.charity.security.UserService;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -32,7 +30,7 @@ public class RegisterController {
 
     @GetMapping("/register")
     public String registerView(Model model){
-        return "register";
+        return "login_register/register";
     }
 
     @PostMapping("/register")

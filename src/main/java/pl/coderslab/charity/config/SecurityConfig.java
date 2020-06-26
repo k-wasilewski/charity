@@ -1,4 +1,4 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.config;
 
 import pl.coderslab.charity.security.SpringDataUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SecSecurityConfig
+public class SecurityConfig
         extends WebSecurityConfigurerAdapter {
 
     @Autowired

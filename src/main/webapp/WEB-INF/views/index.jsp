@@ -15,10 +15,10 @@
 <body>
 <c:choose>
     <c:when test="${username==null}">
-        <jsp:include page="header.jsp"/>
+        <jsp:include page="header/header.jsp"/>
     </c:when>
     <c:when test="${user.blocked==1}">
-        <jsp:include page="header-blocked.jsp"/>
+        <jsp:include page="header/header-blocked.jsp"/>
     </c:when>
     <c:otherwise>
         <jsp:include page="auth/header-auth.jsp"/>
@@ -117,7 +117,7 @@
 
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footer/footer.jsp"/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/resources/js/app.js"></script>

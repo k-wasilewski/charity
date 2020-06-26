@@ -1,4 +1,4 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.controllers.login_register;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
+import pl.coderslab.charity.services.EmailService;
 import pl.coderslab.charity.repos.VerificationToken;
-import pl.coderslab.charity.security.OnRegistrationCompleteEvent;
 import pl.coderslab.charity.security.User;
 import pl.coderslab.charity.security.UserRepository;
 import pl.coderslab.charity.security.UserService;
@@ -16,7 +16,6 @@ import pl.coderslab.charity.security.UserService;
 import java.security.Principal;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Random;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,7 +23,7 @@ import java.util.regex.Pattern;
 @Controller
 public class ForgottenPasswordController {
     @Autowired
-    EmailServiceImpl emailService;
+    EmailService emailService;
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -32,7 +31,7 @@ public class ForgottenPasswordController {
 
     @GetMapping("/forgotten")
     public String forgotten(Model model, Principal principal) {
-        return "forgottenPwd";
+        return "login_register/forgottenPwd";
     }
 
     @PostMapping("/forgotten")
@@ -40,7 +39,7 @@ public class ForgottenPasswordController {
         User user = userRepository.findByUsername(email);
         if (user==null) {
             model.addAttribute("msg", true);
-            return "forgotten-confirmation";
+            return "login_register/forgotten-confirmation";
         }
         String token = UUID.randomUUID().toString();
         userService.createVerificationToken(user, token);
@@ -59,18 +58,18 @@ public class ForgottenPasswordController {
         VerificationToken verificationToken = userService.getVerificationToken(token);
         if (verificationToken == null) {
             model.addAttribute("msg1", true);
-            return "changePwd";
+            return "login_register/changePwd";
         }
 
         User user = verificationToken.getUser();
         Calendar cal = Calendar.getInstance();
         if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
             model.addAttribute("msg2", true);
-            return "changePwd";
+            return "login_register/changePwd";
         }
 
         model.addAttribute("username", user.getUsername());
-        return "changePwd";
+        return "login_register/changePwd";
     }
 
     @PostMapping("changePassword")
@@ -80,7 +79,7 @@ public class ForgottenPasswordController {
                              WebRequest request) {
         if (!password.equals(password2)) {
             model.addAttribute("msg3", true);
-            return "changePwd";
+            return "login_register/changePwd";
         }
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})";
         Pattern p = Pattern.compile(regex);
@@ -96,7 +95,7 @@ public class ForgottenPasswordController {
             userService.activateUser(user);
         } catch (Exception e) {
             model.addAttribute("msg4", true);
-            return "changePwd";
+            return "login_register/changePwd";
         }
         model.addAttribute("msg9", true);
         return "index";

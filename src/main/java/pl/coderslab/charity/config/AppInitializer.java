@@ -1,4 +1,4 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import pl.coderslab.charity.security.UserService;
 import javax.annotation.PostConstruct;
 
 @Component
-class AppInitializator {
+class AppInitializer {
     @Autowired
     UserService userService;
     @Autowired

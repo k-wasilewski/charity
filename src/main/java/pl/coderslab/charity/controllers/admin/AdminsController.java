@@ -1,4 +1,4 @@
-package pl.coderslab.charity.admin;
+package pl.coderslab.charity.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

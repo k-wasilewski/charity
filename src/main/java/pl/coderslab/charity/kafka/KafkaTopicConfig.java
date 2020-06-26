@@ -1,4 +1,4 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.kafka;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;

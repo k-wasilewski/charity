@@ -2,11 +2,8 @@ package pl.coderslab.charity.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.MessageSource;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
-import pl.coderslab.charity.EmailServiceImpl;
+import pl.coderslab.charity.services.EmailService;
 
 import java.util.UUID;
 
@@ -18,7 +15,7 @@ public class RegistrationListener implements
     private UserService service;
 
     @Autowired
-    private EmailServiceImpl emailService;
+    private EmailService emailService;
 
     @Override
     public void onApplicationEvent(OnRegistrationCompleteEvent event) {

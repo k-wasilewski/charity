@@ -1,4 +1,4 @@
-package pl.coderslab.charity.auth;
+package pl.coderslab.charity.controllers.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

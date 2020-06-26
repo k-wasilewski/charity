@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
-<jsp:include page="headerSmall.jsp"/>
+<jsp:include page="../header/headerSmall.jsp"/>
 
 <section class="login-page">
     <h2><spring:message code="changePwd" text="default"/></h2>
@@ -34,7 +34,7 @@
     </form>
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer/footer.jsp"/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/resources/js/app.js"></script>

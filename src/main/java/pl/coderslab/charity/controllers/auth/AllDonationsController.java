@@ -1,4 +1,4 @@
-package pl.coderslab.charity.auth;
+package pl.coderslab.charity.controllers.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,6 @@ import pl.coderslab.charity.security.User;
 import pl.coderslab.charity.security.UserRepository;
 
 import java.security.Principal;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 

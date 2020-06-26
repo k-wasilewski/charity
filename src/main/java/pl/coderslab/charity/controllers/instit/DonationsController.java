@@ -1,15 +1,13 @@
-package pl.coderslab.charity.instit;
+package pl.coderslab.charity.controllers.instit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.coderslab.charity.KafkaConsumerConfig;
-import pl.coderslab.charity.KafkaProducerConfig;
+import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.repos.Donation;
 import pl.coderslab.charity.repos.DonationRepository;
 import pl.coderslab.charity.repos.InstitutionRepository;
@@ -17,10 +15,7 @@ import pl.coderslab.charity.security.User;
 import pl.coderslab.charity.security.UserRepository;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Controller

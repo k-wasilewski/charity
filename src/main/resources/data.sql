@@ -1,3 +1,5 @@
+ALTER DATABASE charity_donation CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 ALTER TABLE institutions CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 INSERT INTO institutions(name, description) VALUES("Dbam o Zdrowie", "Cel i misja: Pomoc dzieciom z ubogich rodzin.");
 INSERT INTO institutions(name, description) VALUES("Dla dzieci", "Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.");

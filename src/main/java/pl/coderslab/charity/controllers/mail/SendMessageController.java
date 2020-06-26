@@ -1,17 +1,16 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.controllers.mail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import pl.coderslab.charity.EmailServiceImpl;
+import pl.coderslab.charity.services.EmailService;
 
 @Controller
 public class SendMessageController {
     @Autowired
-    EmailServiceImpl emailService;
+    EmailService emailService;
 
     @PostMapping("/msg")
     public ModelAndView doSendMsg(@RequestParam("name") String name, @RequestParam("surname") String surname,
