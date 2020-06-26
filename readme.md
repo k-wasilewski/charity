@@ -5,7 +5,16 @@ An application for managing charity donations, with UIs for users, institutions 
 <br>
 
 
-## User flow:
+## build&run the app
+1. $cd charity
+2. $docker build -t charity .
+3. $docker-compose up
+4. app is running at http://localhost:8081
+<br>
+<br>
+
+
+## User flow
 #### 1 - Welcome page
 ![alt text](https://raw.githubusercontent.com/k-wasilewski/charity/master/screenshots/main-en.png)
 This is the initial page that anyone can access.
