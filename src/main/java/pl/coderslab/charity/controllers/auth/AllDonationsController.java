@@ -5,10 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.coderslab.charity.repos.Donation;
+import pl.coderslab.charity.entities.Donation;
 import pl.coderslab.charity.repos.DonationRepository;
-import pl.coderslab.charity.security.User;
-import pl.coderslab.charity.security.UserRepository;
+import pl.coderslab.charity.security.entities.User;
+import pl.coderslab.charity.security.repos.UserRepository;
 
 import java.security.Principal;
 import java.util.List;

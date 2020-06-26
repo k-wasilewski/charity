@@ -1,11 +1,15 @@
-package pl.coderslab.charity.security;
+package pl.coderslab.charity.security.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.repos.VerificationToken;
+import pl.coderslab.charity.entities.VerificationToken;
 import pl.coderslab.charity.repos.VerificationTokenRepository;
+import pl.coderslab.charity.security.entities.Role;
+import pl.coderslab.charity.security.entities.User;
+import pl.coderslab.charity.security.repos.RoleRepository;
+import pl.coderslab.charity.security.repos.UserRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;

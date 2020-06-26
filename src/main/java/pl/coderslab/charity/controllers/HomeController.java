@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
-import pl.coderslab.charity.security.UserRepository;
+import pl.coderslab.charity.security.repos.UserRepository;
 import pl.coderslab.charity.repos.*;
 
 import javax.servlet.http.HttpServletRequest;

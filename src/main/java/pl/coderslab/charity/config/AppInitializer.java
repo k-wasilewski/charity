@@ -2,11 +2,9 @@ package pl.coderslab.charity.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.WebApplicationInitializer;
 import pl.coderslab.charity.repos.InstitutionRepository;
-import pl.coderslab.charity.security.User;
-import pl.coderslab.charity.security.UserRepository;
-import pl.coderslab.charity.security.UserService;
+import pl.coderslab.charity.security.entities.User;
+import pl.coderslab.charity.security.services.UserService;
 
 import javax.annotation.PostConstruct;
 
@@ -16,8 +14,6 @@ class AppInitializer {
     UserService userService;
     @Autowired
     InstitutionRepository institutionRepository;
-    //@Autowired
-    //KafkaProducerConfig kafkaProducerConfig;
 
     @PostConstruct
     private void init() {
@@ -42,8 +38,5 @@ class AppInitializer {
         user.setPassword("test");
         userService.saveUser(user);
         userService.activateUser(user);
-
-        //kafkaProducerConfig.sendMessageInstToUser("siemanko od instytucji do usera");
-        //kafkaProducerConfig.sendMessageUserToInst("siemanko od usera do instytucji");
     }
 }

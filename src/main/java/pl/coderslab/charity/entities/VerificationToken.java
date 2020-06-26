@@ -1,6 +1,6 @@
-package pl.coderslab.charity.repos;
+package pl.coderslab.charity.entities;
 
-import pl.coderslab.charity.security.User;
+import pl.coderslab.charity.security.entities.User;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

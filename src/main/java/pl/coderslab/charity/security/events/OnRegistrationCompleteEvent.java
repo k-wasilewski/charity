@@ -1,6 +1,7 @@
-package pl.coderslab.charity.security;
+package pl.coderslab.charity.security.events;
 
 import org.springframework.context.ApplicationEvent;
+import pl.coderslab.charity.security.entities.User;
 
 import java.util.Locale;
 

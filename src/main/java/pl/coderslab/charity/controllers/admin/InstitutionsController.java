@@ -5,9 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.repos.Donation;
+import pl.coderslab.charity.entities.Donation;
 import pl.coderslab.charity.repos.DonationRepository;
-import pl.coderslab.charity.repos.Institution;
+import pl.coderslab.charity.entities.Institution;
 import pl.coderslab.charity.repos.InstitutionRepository;
 
 import javax.validation.Valid;

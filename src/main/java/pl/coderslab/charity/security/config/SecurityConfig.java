@@ -1,6 +1,5 @@
-package pl.coderslab.charity.config;
+package pl.coderslab.charity.security.config;
 
-import pl.coderslab.charity.security.SpringDataUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;

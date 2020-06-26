@@ -1,8 +1,8 @@
-package pl.coderslab.charity.security;
+package pl.coderslab.charity.security.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.coderslab.charity.repos.Institution;
+import pl.coderslab.charity.entities.Institution;
 
 import javax.persistence.*;
 import java.util.Collection;

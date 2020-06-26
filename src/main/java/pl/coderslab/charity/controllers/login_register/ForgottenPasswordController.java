@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import pl.coderslab.charity.services.EmailService;
-import pl.coderslab.charity.repos.VerificationToken;
-import pl.coderslab.charity.security.User;
-import pl.coderslab.charity.security.UserRepository;
-import pl.coderslab.charity.security.UserService;
+import pl.coderslab.charity.entities.VerificationToken;
+import pl.coderslab.charity.security.entities.User;
+import pl.coderslab.charity.security.repos.UserRepository;
+import pl.coderslab.charity.security.services.UserService;
 
 import java.security.Principal;
 import java.util.Calendar;

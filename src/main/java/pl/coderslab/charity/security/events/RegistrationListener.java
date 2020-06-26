@@ -1,8 +1,10 @@
-package pl.coderslab.charity.security;
+package pl.coderslab.charity.security.events;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import pl.coderslab.charity.security.entities.User;
+import pl.coderslab.charity.security.services.UserService;
 import pl.coderslab.charity.services.EmailService;
 
 import java.util.UUID;

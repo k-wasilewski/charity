@@ -1,8 +1,10 @@
-package pl.coderslab.charity.security;
+package pl.coderslab.charity.security.controllers;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.security.services.UserService;
+import pl.coderslab.charity.security.entities.User;
 
 import java.security.Principal;
 

@@ -1,6 +1,7 @@
-package pl.coderslab.charity.security;
+package pl.coderslab.charity.security.services;
 
-import pl.coderslab.charity.repos.VerificationToken;
+import pl.coderslab.charity.entities.VerificationToken;
+import pl.coderslab.charity.security.entities.User;
 
 public interface UserService {
 
