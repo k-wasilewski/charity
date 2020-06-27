@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import pl.coderslab.charity.repos.OwnerConverter;
 
 import java.util.Locale;
@@ -45,9 +44,4 @@ public class CharityApplication implements WebMvcConfigurer  {
         interceptor.setParamName("lang");
         return interceptor;
     }
-    /*
-    spring.mvc.locale=pl_PL
-    spring.mvc.locale-resolver=fixed
-     */
-
 }
