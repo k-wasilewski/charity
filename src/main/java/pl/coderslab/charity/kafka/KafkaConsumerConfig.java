@@ -27,7 +27,7 @@ public class KafkaConsumerConfig {
         Map<String, Object> props = new HashMap<>();
         if (url==null) props.put(
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "localhost:9092");
+                "kafka:9092");
         else props.put(
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 url);

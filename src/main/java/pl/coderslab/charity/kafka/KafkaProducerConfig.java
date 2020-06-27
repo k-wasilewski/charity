@@ -29,7 +29,7 @@ public class KafkaProducerConfig {
         Map<String, Object> configProps = new HashMap<>();
         if (url==null) configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "localhost:9092");
+                "kafka:9092");
         else configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 url);

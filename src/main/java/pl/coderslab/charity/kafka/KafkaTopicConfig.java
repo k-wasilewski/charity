@@ -20,7 +20,7 @@ public class KafkaTopicConfig {
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
-        if (url==null) bootstrapAddress = "localhost:9092";
+        if (url==null) bootstrapAddress = "kafka:9092";
         else bootstrapAddress = url;
 
         Map<String, Object> configs = new HashMap<>();
