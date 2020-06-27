@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void activateUser(User user) {
         user.setBlocked(0);
+        user.setEnabled(1);
         userRepository.save(user);
     }
 
