@@ -1,7 +1,9 @@
 package pl.coderslab.charity.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -15,14 +17,20 @@ import java.util.Map;
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
+    private static String url;
+
+    public static void setUrl(String testUrl) {url=testUrl;}
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
 
         Map<String, Object> props = new HashMap<>();
-        props.put(
+        if (url==null) props.put(
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "kafka:9092");
+                "localhost:9092");
+        else props.put(
+                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                url);
         props.put(
                 ConsumerConfig.GROUP_ID_CONFIG,
                 "group-id");

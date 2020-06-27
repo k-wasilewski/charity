@@ -3,6 +3,7 @@ package pl.coderslab.charity.kafka;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -19,13 +20,19 @@ import java.util.Map;
 public class KafkaProducerConfig {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
+    private static String url;
+
+    public static void setUrl(String testUrl) {url=testUrl;}
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(
+        if (url==null) configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "kafka:9092");
+                "localhost:9092");
+        else configProps.put(
+                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                url);
         configProps.put(
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
