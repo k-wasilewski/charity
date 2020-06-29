@@ -12,7 +12,6 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
 import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
@@ -24,7 +23,6 @@ import pl.coderslab.charity.security.repos.UserRepository;
 import java.util.Arrays;
 
 import static org.hamcrest.Matchers.*;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
