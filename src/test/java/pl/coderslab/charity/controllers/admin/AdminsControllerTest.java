@@ -49,7 +49,7 @@ public class AdminsControllerTest {
 
     @Test
     @WithUserDetails("admin1@admin.pl")
-    public void testA_instView() throws Exception {
+    public void testA_adminsView() throws Exception {
         mockMvc.perform(get("/admin/admins"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("admin/admin-admins"))
@@ -100,7 +100,7 @@ public class AdminsControllerTest {
 
     @Test
     @WithUserDetails("admin1@admin.pl")
-    public void testE_addInstView() throws Exception {
+    public void testE_add() throws Exception {
         mockMvc.perform(get("/admin/admins/add"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("admin/admin-admins-edit"))

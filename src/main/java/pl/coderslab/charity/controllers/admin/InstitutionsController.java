@@ -22,7 +22,7 @@ public class InstitutionsController {
     DonationRepository donationRepository;
 
     @GetMapping("/admin/institutions")
-    public String instView(Model model, Principal principal) {
+    public String institsView(Model model, Principal principal) {
             if (principal!=null) {
                 model.addAttribute("username", principal.getName());
             } else {
@@ -88,7 +88,7 @@ public class InstitutionsController {
     }
 
     @GetMapping("/admin/institutions/add")
-    public String addInstView(Model model, Principal principal) {
+    public String add(Model model, Principal principal) {
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
         } else {

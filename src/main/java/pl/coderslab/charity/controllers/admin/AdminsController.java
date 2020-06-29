@@ -19,7 +19,7 @@ public class AdminsController {
     UserService userService;
 
     @GetMapping("/admin/admins")
-    public String instView(Model model, Principal principal) {
+    public String adminsView(Model model, Principal principal) {
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
         } else {
@@ -109,7 +109,7 @@ public class AdminsController {
     }
 
     @GetMapping("/admin/admins/add")
-    public String addInstView(Model model, Principal principal) {
+    public String add(Model model, Principal principal) {
         if (principal!=null) {
             model.addAttribute("username", principal.getName());
         } else {
