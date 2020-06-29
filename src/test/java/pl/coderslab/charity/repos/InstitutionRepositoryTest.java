@@ -9,15 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.KafkaContainer;
-import pl.coderslab.charity.entities.Donation;
-import pl.coderslab.charity.entities.Institution;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
-import pl.coderslab.charity.security.entities.User;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
