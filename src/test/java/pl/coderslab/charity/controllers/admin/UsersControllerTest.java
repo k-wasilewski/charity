@@ -13,11 +13,9 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.KafkaContainer;
-import pl.coderslab.charity.entities.Institution;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
-import pl.coderslab.charity.security.entities.User;
 import pl.coderslab.charity.security.repos.UserRepository;
 
 import java.util.Arrays;

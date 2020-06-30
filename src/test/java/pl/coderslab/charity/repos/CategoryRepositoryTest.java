@@ -15,7 +15,6 @@ import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;

@@ -1,6 +1,5 @@
 package pl.coderslab.charity.repos;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -18,7 +17,6 @@ import pl.coderslab.charity.security.entities.User;
 import pl.coderslab.charity.security.repos.UserRepository;
 
 import java.util.Arrays;
-import java.util.Random;
 
 import static org.junit.Assert.*;
 

@@ -5,7 +5,6 @@ import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetupTest;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,21 +12,15 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.KafkaContainer;
-import pl.coderslab.charity.entities.VerificationToken;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
-import pl.coderslab.charity.repos.VerificationTokenRepository;
-import pl.coderslab.charity.security.entities.User;
-import pl.coderslab.charity.security.repos.UserRepository;
 
 import javax.annotation.Resource;
 import javax.mail.Message;
 import java.util.Arrays;
-import java.util.Calendar;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 

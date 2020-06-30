@@ -1,6 +1,5 @@
 package pl.coderslab.charity.security.controllers;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -15,13 +14,10 @@ import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
-import pl.coderslab.charity.repos.DonationRepository;
-import pl.coderslab.charity.repos.InstitutionRepository;
 import pl.coderslab.charity.security.repos.UserRepository;
 
 import java.util.Arrays;
 
-import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;

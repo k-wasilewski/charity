@@ -16,7 +16,6 @@ import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
-import pl.coderslab.charity.security.entities.User;
 import pl.coderslab.charity.security.repos.UserRepository;
 
 import java.util.Arrays;
