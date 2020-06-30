@@ -47,7 +47,6 @@ public class HomeControllerTest {
 
     @Before
     public void init() {
-        //given
         INSTITUTIONS_SIZE = institutionRepository.findAll().size();
         DONATIONS_QUANTITIES = donationRepository.customQuantitiesSum();
         DONATIONS_SUM = donationRepository.findAll().size();

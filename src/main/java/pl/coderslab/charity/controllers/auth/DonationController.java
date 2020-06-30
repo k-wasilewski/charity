@@ -71,7 +71,6 @@ public class DonationController {
     public String donationAction(@ModelAttribute("donation") @Valid Donation donation, BindingResult result,
                                  Model model, HttpServletRequest req, Principal principal) {
         if (result.hasErrors()) {
-            System.out.println(result);
             model.addAttribute("categories", categoryRepository.findAll());
             model.addAttribute("institutions", institutionRepository.findAll());
             model.addAttribute("donation", donation);
