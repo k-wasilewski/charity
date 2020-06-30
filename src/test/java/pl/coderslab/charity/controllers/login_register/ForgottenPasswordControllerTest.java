@@ -141,4 +141,12 @@ public class ForgottenPasswordControllerTest {
         assertNotEquals(oldPwd,
                 userRepository.findByUsername("test@test.pl").getPassword());
     }
+
+    @Test
+    public void testD_forgotten() throws Exception {
+        mockMvc.perform(get("/forgotten"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("login_register/forgottenPwd"))
+                .andReturn();
+    }
 }
