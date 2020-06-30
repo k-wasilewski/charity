@@ -1,15 +1,9 @@
 package pl.coderslab.charity.controllers.auth;
 
-import com.github.charithe.kafka.KafkaJunitExtension;
-import com.github.charithe.kafka.KafkaJunitExtensionConfig;
-import com.github.charithe.kafka.StartupMode;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,8 +38,6 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@ExtendWith(KafkaJunitExtension.class)
-@KafkaJunitExtensionConfig(startupMode = StartupMode.WAIT_FOR_STARTUP)
 public class DonationControllerTest {
     @Autowired
     private MockMvc mockMvc;
