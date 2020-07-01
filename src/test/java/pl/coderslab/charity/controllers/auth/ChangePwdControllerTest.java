@@ -13,6 +13,7 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.KafkaContainer;
+import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
@@ -31,22 +32,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ChangePwdControllerTest {
+public class ChangePwdControllerTest extends CustomBeforeAll {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
     UserRepository userRepository;
-
-    @ClassRule
-    public static KafkaContainer kafkaContainer = new KafkaContainer();
-
-    @BeforeClass
-    public static void setKafkaContainerName() {
-        kafkaContainer.setNetworkAliases(Arrays.asList("kafka"));
-        KafkaConsumerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaProducerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaTopicConfig.setUrl(kafkaContainer.getBootstrapServers());
-    }
 
     @Test
     @WithUserDetails("test@test.pl")

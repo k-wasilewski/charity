@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.KafkaContainer;
+import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
@@ -21,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OwnerConverterTest {
+public class OwnerConverterTest extends CustomBeforeAll {
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -29,20 +30,8 @@ public class OwnerConverterTest {
     final String USERNAME = "test@user.com";
     User user;
 
-    @ClassRule
-    public static KafkaContainer kafkaContainer = new KafkaContainer();
-
-    @BeforeClass
-    public static void setKafkaContainerName() {
-        kafkaContainer.setNetworkAliases(Arrays.asList("kafka"));
-        KafkaConsumerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaProducerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaTopicConfig.setUrl(kafkaContainer.getBootstrapServers());
-    }
-
     @Before
     public void setup() {
-        //given
         user = new User();
         user.setUsername(USERNAME);
         userRepository.save(user);
@@ -50,10 +39,8 @@ public class OwnerConverterTest {
 
     @Test
     public void convert() {
-        //when
         User convertedUser = ownerConverter.convert(USERNAME);
 
-        //then
         assertEquals(user.getUsername(), convertedUser.getUsername());
     }
 }

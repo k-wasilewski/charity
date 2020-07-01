@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.entities.Donation;
 import pl.coderslab.charity.entities.Institution;
+import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
@@ -25,7 +26,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DonationRepositoryTest {
+public class DonationRepositoryTest extends CustomBeforeAll {
     @Autowired
     DonationRepository donationRepository;
     @Autowired
@@ -35,35 +36,20 @@ public class DonationRepositoryTest {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @ClassRule
-    public static KafkaContainer kafkaContainer = new KafkaContainer();
-
-    @BeforeClass
-    public static void setKafkaContainerName() {
-        kafkaContainer.setNetworkAliases(Arrays.asList("kafka"));
-        KafkaConsumerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaProducerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaTopicConfig.setUrl(kafkaContainer.getBootstrapServers());
-    }
-
     @Test
     @Transactional
     public void customQuantitiesSum() {
-        //given
         final int INITIAL_SUM = 5 + 2 + 7;
 
-        //when, then
         assertEquals(INITIAL_SUM, donationRepository.customQuantitiesSum());
     }
 
     @Test
     @Transactional
     public void findAllByInstitution() {
-        //given
         Institution institution1 = institutionRepository.findById(1);
         Institution institution2 = institutionRepository.findById(2);
 
-        //when, then
         assertEquals(2,
                 donationRepository.findAllByInstitution(institution1).size());
         assertEquals(1,
@@ -73,7 +59,6 @@ public class DonationRepositoryTest {
     @Test
     @Transactional
     public void findAllByOwner() {
-        //given
         User testUser = new User();
         testUser.setUsername("test user");
         userRepository.save(testUser);
@@ -89,7 +74,6 @@ public class DonationRepositoryTest {
         donationWithOwner.setQuantity(1);
         donationRepository.save(donationWithOwner);
 
-        //when, then
         assertEquals(donationWithOwner,
                 donationRepository.findAllByOwner(testUser).get(0));
     }

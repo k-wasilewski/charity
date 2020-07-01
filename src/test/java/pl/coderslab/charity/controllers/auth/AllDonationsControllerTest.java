@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.entities.Category;
 import pl.coderslab.charity.entities.Donation;
+import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
@@ -35,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AllDonationsControllerTest {
+public class AllDonationsControllerTest extends CustomBeforeAll {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -46,17 +47,6 @@ public class AllDonationsControllerTest {
     InstitutionRepository institutionRepository;
     @Autowired
     CategoryRepository categoryRepository;
-
-    @ClassRule
-    public static KafkaContainer kafkaContainer = new KafkaContainer();
-
-    @BeforeClass
-    public static void setKafkaContainerName() {
-        kafkaContainer.setNetworkAliases(Arrays.asList("kafka"));
-        KafkaConsumerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaProducerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaTopicConfig.setUrl(kafkaContainer.getBootstrapServers());
-    }
 
     @Test
     @WithUserDetails("test@test.pl")

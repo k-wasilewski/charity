@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.KafkaContainer;
+import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
@@ -27,23 +28,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SendMessageControllerTest {
+public class SendMessageControllerTest extends CustomBeforeAll {
     @Resource
     private JavaMailSenderImpl emailSender;
     private GreenMail testSmtp;
     @Autowired
     private MockMvc mockMvc;
-
-    @ClassRule
-    public static KafkaContainer kafkaContainer = new KafkaContainer();
-
-    @BeforeClass
-    public static void setKafkaContainerName() {
-        kafkaContainer.setNetworkAliases(Arrays.asList("kafka"));
-        KafkaConsumerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaProducerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaTopicConfig.setUrl(kafkaContainer.getBootstrapServers());
-    }
 
     @Before
     public void testSmtpInit() {
@@ -52,6 +42,11 @@ public class SendMessageControllerTest {
 
         emailSender.setPort(3025);
         emailSender.setHost("localhost");
+    }
+
+    @After
+    public void testSmtpDestr() {
+        testSmtp.stop();
     }
 
     @Test

@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.entities.VerificationToken;
+import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
@@ -22,27 +23,15 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VerificationTokenRepositoryTest {
+public class VerificationTokenRepositoryTest extends CustomBeforeAll {
     @Autowired
     VerificationTokenRepository verificationTokenRepository;
     @Autowired
     UserRepository userRepository;
 
-    @ClassRule
-    public static KafkaContainer kafkaContainer = new KafkaContainer();
-
-    @BeforeClass
-    public static void setKafkaContainerName() {
-        kafkaContainer.setNetworkAliases(Arrays.asList("kafka"));
-        KafkaConsumerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaProducerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaTopicConfig.setUrl(kafkaContainer.getBootstrapServers());
-    }
-
     @Test
     @Transactional
     public void findByToken() {
-        //given
         User user = new User();
         user.setUsername("test user1");
         userRepository.save(user);
@@ -52,14 +41,12 @@ public class VerificationTokenRepositoryTest {
         verificationToken.setToken(token);
         verificationTokenRepository.save(verificationToken);
 
-        //when, then
         assertEquals(verificationToken, verificationTokenRepository.findByToken(token));
     }
 
     @Test
     @Transactional
     public void findByUser() {
-        //given
         User user = new User();
         user.setUsername("test user2");
         userRepository.save(user);
@@ -69,7 +56,6 @@ public class VerificationTokenRepositoryTest {
         verificationToken.setToken(token);
         verificationTokenRepository.save(verificationToken);
 
-        //when, then
         assertEquals(verificationToken, verificationTokenRepository.findByUser(user));
     }
 }

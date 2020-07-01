@@ -15,6 +15,7 @@ import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.controllers.instit.DonationsController;
 import pl.coderslab.charity.entities.Category;
 import pl.coderslab.charity.entities.Donation;
+import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
@@ -38,7 +39,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class DonationControllerTest {
+public class DonationControllerTest extends CustomBeforeAll {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -51,17 +52,6 @@ public class DonationControllerTest {
     InstitutionRepository institutionRepository;
     @Autowired
     DonationsController donationsController;
-
-    @ClassRule
-    public static KafkaContainer kafkaContainer = new KafkaContainer();
-
-    @BeforeClass
-    public static void setKafkaContainerName() {
-        kafkaContainer.setNetworkAliases(Arrays.asList("kafka"));
-        KafkaConsumerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaProducerConfig.setUrl(kafkaContainer.getBootstrapServers());
-        KafkaTopicConfig.setUrl(kafkaContainer.getBootstrapServers());
-    }
 
     @Test
     @WithUserDetails("test@test.pl")
