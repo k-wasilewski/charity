@@ -1,9 +1,6 @@
 package pl.coderslab.charity.repos;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,6 +32,11 @@ public class OwnerConverterTest extends CustomBeforeAll {
         user = new User();
         user.setUsername(USERNAME);
         userRepository.save(user);
+    }
+
+    @After
+    public void restore() {
+        userRepository.delete(userRepository.findByUsername(USERNAME));
     }
 
     @Test

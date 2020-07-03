@@ -57,7 +57,7 @@ public class UserServiceTest extends CustomBeforeAll {
     public void saveUser() {
         final User testUser = new User();
         final String password = "abc";
-        final String username = "test user";
+        final String username = "testuser";
         final Role userRole = roleRepository.findByName("ROLE_USER");
         testUser.setUsername(username);
         testUser.setPassword(password);
@@ -69,6 +69,8 @@ public class UserServiceTest extends CustomBeforeAll {
         assertNotEquals(password, savedUser.getPassword());
         assertEquals(1, savedUser.getBlocked());
         assertTrue(savedUser.getRoles().contains(userRole));
+
+        userRepository.delete(userRepository.findByUsername(username));
     }
 
     @Test
@@ -85,7 +87,7 @@ public class UserServiceTest extends CustomBeforeAll {
     public void saveAdmin() {
         final User testAdmin = new User();
         final String password = "abc";
-        final String username = "test admin";
+        final String username = "testadmin";
         final Role adminRole = roleRepository.findByName("ROLE_ADMIN");
         testAdmin.setUsername(username);
         testAdmin.setPassword(password);
@@ -97,6 +99,8 @@ public class UserServiceTest extends CustomBeforeAll {
         assertNotEquals(password, savedAdmin.getPassword());
         assertEquals(1, savedAdmin.getEnabled());
         assertTrue(savedAdmin.getRoles().contains(adminRole));
+
+        userRepository.delete(userRepository.findByUsername(username));
     }
 
     @Test
@@ -104,7 +108,7 @@ public class UserServiceTest extends CustomBeforeAll {
     public void saveInstitution() {
         final User testInstitution = new User();
         final String password = "abc";
-        final String username = "test instit";
+        final String username = "testinstit";
         final Role institRole = roleRepository.findByName("ROLE_INSTITUTION");
         testInstitution.setUsername(username);
         testInstitution.setPassword(password);
@@ -116,6 +120,8 @@ public class UserServiceTest extends CustomBeforeAll {
         assertNotEquals(password, savedInstitution.getPassword());
         assertEquals(1, savedInstitution.getEnabled());
         assertTrue(savedInstitution.getRoles().contains(institRole));
+
+        userRepository.delete(userRepository.findByUsername(username));
     }
 
     @Test
@@ -127,6 +133,8 @@ public class UserServiceTest extends CustomBeforeAll {
         userService.changePwd(user, "changedPassword");
 
         assertNotEquals(oldPwd, userRepository.findByUsername("test@test.pl").getPassword());
+
+        userService.changePwd(user, "test");
     }
 
     @Test
@@ -153,6 +161,8 @@ public class UserServiceTest extends CustomBeforeAll {
         String token = verificationToken.getToken();
 
         assertEquals(verificationToken, userService.getVerificationToken(token));
+
+        userRepository.delete(userRepository.findByUsername(username));
     }
 
     @Test
@@ -166,6 +176,8 @@ public class UserServiceTest extends CustomBeforeAll {
         VerificationToken verificationToken = tokenRepository.findByToken(token);
         assertNotNull(verificationToken);
         assertEquals(user, verificationToken.getUser());
+
+        tokenRepository.delete(tokenRepository.findByToken(token));
     }
 }
 

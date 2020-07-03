@@ -18,7 +18,7 @@ public class Donation {
     @NotNull
     private Integer quantity;
     @ManyToMany
-    @NotEmpty
+    @Size(min = 1)
     private List<Category> categories;
     @ManyToOne
     @NotNull

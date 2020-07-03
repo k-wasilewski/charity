@@ -55,7 +55,7 @@ public class ChangePwdControllerTest extends CustomBeforeAll {
     public void testB_actualChangePwd() throws Exception {
         String oldPwd = userRepository.findByUsername("test@test.pl").getPassword();
 
-        mockMvc.perform(post("/auth/changePwd?old-pwd=test&new-pwd=new&tew-pwd2=new"))
+        mockMvc.perform(post("/auth/changePwd?old-pwd=test&new-pwd=new&new-pwd2=new"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
                 .andExpect(model().attribute("user", notNullValue()))
@@ -64,5 +64,9 @@ public class ChangePwdControllerTest extends CustomBeforeAll {
                 .andReturn();
 
         assertNotEquals(oldPwd, userRepository.findByUsername("test@test.pl").getPassword());
+
+        mockMvc.perform(post("/auth/changePwd?old-pwd=new&new-pwd=test&new-pwd2=test"))
+                .andExpect(status().isOk())
+                .andReturn();
     }
 }

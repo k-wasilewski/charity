@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
   */
 
   $('.summaryBtn').click(function () {
-    var things = $('.things').attr('class').replace('things ','');
+    var things = $('.things').attr('value').name;
     $('#summaryThings').text(things);
 
     $('#summaryQuantity').text($('.quantity').val());

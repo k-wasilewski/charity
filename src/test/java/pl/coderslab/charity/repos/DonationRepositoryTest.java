@@ -60,7 +60,7 @@ public class DonationRepositoryTest extends CustomBeforeAll {
     @Transactional
     public void findAllByOwner() {
         User testUser = new User();
-        testUser.setUsername("test user");
+        testUser.setUsername("test@testuser.com");
         userRepository.save(testUser);
         Donation donationWithOwner = new Donation();
         donationWithOwner.setOwner(testUser);
@@ -70,12 +70,17 @@ public class DonationRepositoryTest extends CustomBeforeAll {
         donationWithOwner.setCity("Warsaw");
         donationWithOwner.setPickUpTime(LocalTime.now());
         donationWithOwner.setStreet("Unknown");
-        donationWithOwner.setCategories(Arrays.asList(categoryRepository.getOne(1)));
+        donationWithOwner.setCategories(Arrays.asList(categoryRepository.findById(1).get()));
         donationWithOwner.setQuantity(1);
+        donationWithOwner.setCreated(LocalDate.now());
         donationRepository.save(donationWithOwner);
 
-        assertEquals(donationWithOwner,
-                donationRepository.findAllByOwner(testUser).get(0));
+        assertEquals(donationWithOwner.getId(),
+                donationRepository.findAllByOwner(testUser).get(0).getId());
+
+        userRepository.delete(userRepository.findByUsername("test@testuser.com"));
+        donationRepository.delete(donationRepository.
+                findAllByOwner(testUser).get(0));
     }
 }
 

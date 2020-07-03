@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.entities.Category;
 import pl.coderslab.charity.entities.Donation;
@@ -26,7 +27,9 @@ import pl.coderslab.charity.security.repos.UserRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -50,6 +53,7 @@ public class AllDonationsControllerTest extends CustomBeforeAll {
 
     @Test
     @WithUserDetails("test@test.pl")
+    @Transactional
     public void testA_allDonationsView() throws Exception {
         Category category = new Category();
         category.setName("test");
@@ -64,6 +68,7 @@ public class AllDonationsControllerTest extends CustomBeforeAll {
         donation.setZipCode("test");
         donation.setInstitution(institutionRepository.findById(1));
         donation.setPickUpDate(LocalDate.of(2021, 12, 12));
+        donation.setCreated(LocalDate.now());
         donationRepository.save(donation);
 
         mockMvc.perform(get("/auth/all-donations"))
@@ -76,20 +81,40 @@ public class AllDonationsControllerTest extends CustomBeforeAll {
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("test@test.pl").getUsername()))
                 .andReturn();
+
+        donationRepository.delete(donationRepository.findAllByOwner(
+                userRepository.findByUsername("test@test.pl")
+        ).get(0));
     }
 
     @Test
     @WithUserDetails("test@test.pl")
     public void testB_del() throws Exception {
-        mockMvc.perform(get("/auth/donation/del?id=4"))
+        Category category = new Category();
+        category.setName("test");
+        categoryRepository.save(category);
+        Donation donation = new Donation();
+        donation.setOwner(userRepository.findByUsername("test@test.pl"));
+        donation.setCategories(Arrays.asList(category));
+        donation.setQuantity(2);
+        donation.setPickUpTime(LocalTime.now());
+        donation.setStreet("test");
+        donation.setCity("test");
+        donation.setZipCode("test");
+        donation.setInstitution(institutionRepository.findById(1));
+        donation.setPickUpDate(LocalDate.of(2021, 12, 12));
+
+        int donationId = donationRepository.findAllByOwner(
+                userRepository.findByUsername("test@test.pl")).get(0).getId();
+
+        mockMvc.perform(get("/auth/donation/del?id="+donationId))
                 .andExpect(status().isOk())
-                .andExpect(view().name("auth/allDonations"))
-                .andExpect(model().attribute("donations",
-                        not(hasItem(hasProperty("owner",
-                                hasProperty("username", equalTo("test@test.pl")))))))
                 .andExpect(model().attribute("user", notNullValue()))
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("test@test.pl").getUsername()))
                 .andReturn();
+
+        donationRepository.delete(donationRepository.findAllByOwner(
+                userRepository.findByUsername("test@test.pl")).get(0));
     }
 }

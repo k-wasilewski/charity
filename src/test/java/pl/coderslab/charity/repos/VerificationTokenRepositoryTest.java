@@ -33,30 +33,36 @@ public class VerificationTokenRepositoryTest extends CustomBeforeAll {
     @Transactional
     public void findByToken() {
         User user = new User();
-        user.setUsername("test user1");
+        user.setUsername("test@user1.com");
         userRepository.save(user);
         VerificationToken verificationToken = new VerificationToken();
-        String token = "test token1";
+        String token = "testToken1";
         verificationToken.setUser(user);
         verificationToken.setToken(token);
         verificationTokenRepository.save(verificationToken);
 
         assertEquals(verificationToken, verificationTokenRepository.findByToken(token));
+
+        userRepository.delete(userRepository.findByUsername("test@user1.com"));
+        verificationTokenRepository.delete(verificationTokenRepository.findByToken(token));
     }
 
     @Test
     @Transactional
     public void findByUser() {
         User user = new User();
-        user.setUsername("test user2");
+        user.setUsername("test@user2.com");
         userRepository.save(user);
         VerificationToken verificationToken = new VerificationToken();
-        String token = "test token2";
+        String token = "testToken2";
         verificationToken.setUser(user);
         verificationToken.setToken(token);
         verificationTokenRepository.save(verificationToken);
 
         assertEquals(verificationToken, verificationTokenRepository.findByUser(user));
+
+        userRepository.delete(userRepository.findByUsername("test@user2.com"));
+        verificationTokenRepository.delete(verificationTokenRepository.findByToken(token));
     }
 }
 

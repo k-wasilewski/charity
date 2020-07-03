@@ -1,15 +1,11 @@
 package pl.coderslab.charity.extensions;
 
-import org.junit.jupiter.api.extension.BeforeAllCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
 import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
 
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.extension.ExtensionContext.Namespace.GLOBAL;
 
 public class CustomBeforeAll {
     private static boolean started = false;

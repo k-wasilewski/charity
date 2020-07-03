@@ -18,6 +18,7 @@ import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
+import pl.coderslab.charity.repos.InstitutionRepository;
 import pl.coderslab.charity.security.repos.UserRepository;
 
 import java.util.Arrays;
@@ -67,6 +68,7 @@ public class InstitutionsControllerTest extends CustomBeforeAll {
     public void testC_edit() throws Exception {
         Institution instit = new Institution();
         instit.setName("Test institution");
+        instit.setId(5);
 
         mockMvc.perform(post("/admin/instututions/edit")
                 .flashAttr("inst", instit))

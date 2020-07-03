@@ -67,7 +67,7 @@ public class ForgottenPasswordControllerTest extends CustomBeforeAll {
 
     @After
     public void testSmtpDestr() {
-        testSmtp.stop();
+        if (testSmtp!=null) testSmtp.stop();
     }
 
     @Test
@@ -122,6 +122,9 @@ public class ForgottenPasswordControllerTest extends CustomBeforeAll {
 
         assertNotEquals(oldPwd,
                 userRepository.findByUsername("test@test.pl").getPassword());
+
+        user.setPassword("test");
+        userService.saveUser(user);
     }
 
     @Test

@@ -27,8 +27,7 @@ import pl.coderslab.charity.security.repos.UserRepository;
 
 import java.util.Arrays;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -57,7 +56,7 @@ public class DonationsControllerTest extends CustomBeforeAll {
         mockMvc.perform(get("/instit/donations"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("instit/myDonations"))
-                .andExpect(model().attribute("donations", hasSize(2)))
+                .andExpect(model().attribute("donations", hasItem(notNullValue())))
                 .andExpect(model().attribute("user", notNullValue()))
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("dbamozdrowie@wp.pl").getUsername()))
@@ -68,7 +67,7 @@ public class DonationsControllerTest extends CustomBeforeAll {
     @WithUserDetails("dbamozdrowie@wp.pl")
     @Transactional
     public void testB_pickedupOn() throws Exception {
-        Donation donation = donationRepository.findById(1).get();
+        Donation donation = donationRepository.findAll().get(0);
 
         final String kafkaMsg = "institution:" + donation.getInstitution() + ", username: " +
                 donation.getOwner() + ", quantity:" + donation.getQuantity() +
@@ -77,7 +76,7 @@ public class DonationsControllerTest extends CustomBeforeAll {
         mockMvc.perform(get("/instit/donation/pickedupOn?id=1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("instit/myDonations"))
-                .andExpect(model().attribute("donations", hasSize(2)))
+                .andExpect(model().attribute("donations", hasItem(notNullValue())))
                 .andExpect(model().attribute("user", notNullValue()))
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("dbamozdrowie@wp.pl").getUsername()))
@@ -92,12 +91,12 @@ public class DonationsControllerTest extends CustomBeforeAll {
     @WithUserDetails("dbamozdrowie@wp.pl")
     @Transactional
     public void testC_pickedupOff() throws Exception {
-        Donation donation = donationRepository.findById(1).get();
+        Donation donation = donationRepository.findAll().get(0);
 
         mockMvc.perform(get("/instit/donation/pickedupOff?id=1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("instit/myDonations"))
-                .andExpect(model().attribute("donations", hasSize(2)))
+                .andExpect(model().attribute("donations", hasItem(notNullValue())))
                 .andExpect(model().attribute("user", notNullValue()))
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("dbamozdrowie@wp.pl").getUsername()))

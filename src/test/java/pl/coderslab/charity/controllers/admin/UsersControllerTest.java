@@ -17,7 +17,9 @@ import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
+import pl.coderslab.charity.security.entities.User;
 import pl.coderslab.charity.security.repos.UserRepository;
+import pl.coderslab.charity.security.services.UserService;
 
 import java.util.Arrays;
 
@@ -35,6 +37,8 @@ public class UsersControllerTest extends CustomBeforeAll {
     private MockMvc mockMvc;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    UserService userService;
 
     @Test
     @WithUserDetails("admin1@admin.pl")
@@ -42,7 +46,9 @@ public class UsersControllerTest extends CustomBeforeAll {
         mockMvc.perform(get("/admin/users"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("admin/admin-users"))
-                .andExpect(model().attribute("users", hasSize(1)))
+                .andExpect(model().attribute("users", hasItem(hasProperty(
+                        "username", notNullValue()
+                ))))
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("admin1@admin.pl").getUsername()))
                 .andReturn();
@@ -73,6 +79,11 @@ public class UsersControllerTest extends CustomBeforeAll {
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("admin1@admin.pl").getUsername()))
                 .andReturn();
+
+        User restoredUser = userRepository.findByUsername("test2@test.pl");
+        restoredUser.setUsername("test@test.pl");
+        restoredUser.setPassword("test");
+        userService.saveUser(restoredUser);
     }
 
     @Test
@@ -82,7 +93,7 @@ public class UsersControllerTest extends CustomBeforeAll {
                 .andExpect(status().isOk())
                 .andExpect(view().name("admin/admin-users-details"))
                 .andExpect(model().attribute("user",
-                        hasProperty("username", equalTo("test2@test.pl"))))
+                        hasProperty("username", equalTo("test@test.pl"))))
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("admin1@admin.pl").getUsername()))
                 .andReturn();
@@ -99,6 +110,10 @@ public class UsersControllerTest extends CustomBeforeAll {
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("admin1@admin.pl").getUsername()))
                 .andReturn();
+
+        User restoredUser = userRepository.findById(4L).get();
+        restoredUser.setBlocked(0);
+        userService.saveUser(restoredUser);
     }
 
     @Test
@@ -112,6 +127,12 @@ public class UsersControllerTest extends CustomBeforeAll {
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("admin1@admin.pl").getUsername()))
                 .andReturn();
+
+        User restoredUser = new User();
+        restoredUser.setUsername("test@test.pl");
+        restoredUser.setPassword("test");
+        restoredUser.setId(4L);
+        userService.saveUser(restoredUser);
     }
 
     @Test

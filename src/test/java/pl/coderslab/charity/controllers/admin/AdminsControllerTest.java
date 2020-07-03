@@ -17,7 +17,9 @@ import pl.coderslab.charity.extensions.CustomBeforeAll;
 import pl.coderslab.charity.kafka.KafkaConsumerConfig;
 import pl.coderslab.charity.kafka.KafkaProducerConfig;
 import pl.coderslab.charity.kafka.KafkaTopicConfig;
+import pl.coderslab.charity.security.entities.User;
 import pl.coderslab.charity.security.repos.UserRepository;
+import pl.coderslab.charity.security.services.UserService;
 
 import java.util.Arrays;
 
@@ -35,6 +37,8 @@ public class AdminsControllerTest extends CustomBeforeAll {
     private MockMvc mockMvc;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    UserService userService;
 
     @Test
     @WithUserDetails("admin1@admin.pl")
@@ -73,6 +77,11 @@ public class AdminsControllerTest extends CustomBeforeAll {
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("admin1@admin.pl").getUsername()))
                 .andReturn();
+
+        mockMvc.perform(post("/admin/admins/edit?id=2&username=admin1@admin.pl&" +
+                "password=admin&password2=admin"))
+                .andExpect(status().isOk())
+                .andReturn();
     }
 
     @Test
@@ -85,6 +94,12 @@ public class AdminsControllerTest extends CustomBeforeAll {
                 .andExpect(model().attribute("username",
                         userRepository.findByUsername("admin1@admin.pl").getUsername()))
                 .andReturn();
+
+        User restoredAdmin = new User();
+        restoredAdmin.setUsername("admin2@admin.pl");
+        restoredAdmin.setPassword("admin");
+        restoredAdmin.setId(2L);
+        userService.saveAdmin(restoredAdmin);
     }
 
     @Test

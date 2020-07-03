@@ -45,6 +45,8 @@ public class UserControllerTest extends CustomBeforeAll {
                 .andReturn();
 
         assertNotNull(userRepository.findByUsername(username));
+
+        userRepository.delete(userRepository.findByUsername(username));
     }
 
     @Test

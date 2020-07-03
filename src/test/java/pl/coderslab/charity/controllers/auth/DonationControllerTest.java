@@ -27,6 +27,7 @@ import pl.coderslab.charity.security.repos.UserRepository;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.notNullValue;
@@ -85,6 +86,7 @@ public class DonationControllerTest extends CustomBeforeAll {
 
     @Test
     @WithUserDetails("test@test.pl")
+    @Transactional
     public void donationAction() throws Exception {
         Category category = new Category();
         category.setName("test");
@@ -104,7 +106,8 @@ public class DonationControllerTest extends CustomBeforeAll {
                 ", institution:" + donation.getInstitution() + ", quantity:" + donation.getQuantity() +
                 ", things:"+donation.getCategories();
 
-        assertFalse(donationRepository.findById(4).isPresent());
+        assertTrue(donationRepository.findAllByOwner(
+                userRepository.findByUsername("test@test.pl")).isEmpty());
 
         mockMvc.perform(post("/auth/donation")
                 .flashAttr("donation", donation))
@@ -115,8 +118,12 @@ public class DonationControllerTest extends CustomBeforeAll {
                         userRepository.findByUsername("test@test.pl").getUsername()))
                 .andReturn();
 
-        assertTrue(donationRepository.findById(4).isPresent());
+        assertFalse(donationRepository.findAllByOwner(
+                userRepository.findByUsername("test@test.pl")).isEmpty());
         Thread.sleep(1000);
         assertEquals(kafkaMsg, donationsController.getMsg());
+
+        donationRepository.delete(donationRepository.findAllByOwner(
+                userRepository.findByUsername("test@test.pl")).get(0));
     }
 }

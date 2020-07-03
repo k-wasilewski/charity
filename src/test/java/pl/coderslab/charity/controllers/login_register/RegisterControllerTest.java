@@ -110,5 +110,7 @@ public class RegisterControllerTest extends CustomBeforeAll {
         assertEquals(0, userRepository.findByUsername(username).getBlocked());
         assertNotNull(verificationToken);
         assertTrue((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime())>0);
+
+        userRepository.delete(userRepository.findByUsername(username));
     }
 }
