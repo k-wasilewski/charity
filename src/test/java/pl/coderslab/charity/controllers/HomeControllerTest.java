@@ -1,8 +1,6 @@
 package pl.coderslab.charity.controllers;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +10,10 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import org.springframework.test.web.servlet.MockMvc;
-import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.extensions.CustomBeforeAll;
-import pl.coderslab.charity.kafka.KafkaConsumerConfig;
-import pl.coderslab.charity.kafka.KafkaProducerConfig;
-import pl.coderslab.charity.kafka.KafkaTopicConfig;
 import pl.coderslab.charity.repos.DonationRepository;
 import pl.coderslab.charity.repos.InstitutionRepository;
 import pl.coderslab.charity.security.repos.UserRepository;
-
-import java.util.Arrays;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

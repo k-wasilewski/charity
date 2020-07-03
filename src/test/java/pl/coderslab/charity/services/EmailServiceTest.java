@@ -9,16 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.extensions.CustomBeforeAll;
-import pl.coderslab.charity.kafka.KafkaConsumerConfig;
-import pl.coderslab.charity.kafka.KafkaProducerConfig;
-import pl.coderslab.charity.kafka.KafkaTopicConfig;
 
 import javax.annotation.Resource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -44,8 +39,7 @@ public class EmailServiceTest extends CustomBeforeAll {
     }
 
     @Test
-    public void sendSimpleMessage()
-            throws InterruptedException, MessagingException {
+    public void sendSimpleMessage() throws MessagingException {
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setFrom("test@sender.com");

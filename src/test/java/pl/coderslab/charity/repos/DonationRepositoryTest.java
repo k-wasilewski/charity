@@ -1,20 +1,14 @@
 package pl.coderslab.charity.repos;
 
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.*;
 import org.springframework.transaction.annotation.Transactional;
-import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.entities.Donation;
 import pl.coderslab.charity.entities.Institution;
 import pl.coderslab.charity.extensions.CustomBeforeAll;
-import pl.coderslab.charity.kafka.KafkaConsumerConfig;
-import pl.coderslab.charity.kafka.KafkaProducerConfig;
-import pl.coderslab.charity.kafka.KafkaTopicConfig;
 import pl.coderslab.charity.security.entities.User;
 import pl.coderslab.charity.security.repos.UserRepository;
 

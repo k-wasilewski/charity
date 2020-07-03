@@ -1,7 +1,5 @@
 package pl.coderslab.charity.security.services;
 
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +9,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.entities.VerificationToken;
 import pl.coderslab.charity.extensions.CustomBeforeAll;
-import pl.coderslab.charity.kafka.KafkaConsumerConfig;
-import pl.coderslab.charity.kafka.KafkaProducerConfig;
-import pl.coderslab.charity.kafka.KafkaTopicConfig;
 import pl.coderslab.charity.repos.VerificationTokenRepository;
 import pl.coderslab.charity.security.entities.Role;
 import pl.coderslab.charity.security.entities.User;
 import pl.coderslab.charity.security.repos.RoleRepository;
 import pl.coderslab.charity.security.repos.UserRepository;
-
-import java.util.Arrays;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

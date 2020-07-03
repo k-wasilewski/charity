@@ -11,15 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.testcontainers.containers.KafkaContainer;
 import pl.coderslab.charity.extensions.CustomBeforeAll;
-import pl.coderslab.charity.kafka.KafkaConsumerConfig;
-import pl.coderslab.charity.kafka.KafkaProducerConfig;
-import pl.coderslab.charity.kafka.KafkaTopicConfig;
 
 import javax.annotation.Resource;
 import javax.mail.Message;
-import java.util.Arrays;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
