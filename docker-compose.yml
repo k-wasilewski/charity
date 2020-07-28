@@ -40,7 +40,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=charity_donation
     volumes:
-      - /home/Pulpit/CodersLab/charity/db:/var/lib/mysql
+      - /home/charity/db:/var/lib/mysql
 
   adminer:
    image: adminer
